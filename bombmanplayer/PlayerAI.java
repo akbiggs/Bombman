@@ -14,9 +14,7 @@ import java.util.Map.Entry;
 import java.util.Queue;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
-
 import org.junit.experimental.theories.Theories.TheoryAnchor;
-
 import sun.awt.image.ImageWatched.Link;
 
 /**
@@ -93,8 +91,8 @@ public class PlayerAI implements Player {
         }
 
         /**
-         * Find which neighbours of Bomber's current position are currently unoccupied, so that I
-         * can move into. Also counts how many blocks are neighbours.
+         * Find which neighbors of Bomber's current position are currently unoccupied, so that I
+         * can move into. Also counts how many blocks are neighbors.
          */
         List<Move.Direction> validMoves = new LinkedList<>();
         LinkedList<Move.Direction> neighborBlocks = new LinkedList<>();
@@ -125,7 +123,7 @@ public class PlayerAI implements Player {
         	for (SearchNode node : set.nodes) {
             	// Create a theoretical bomb to consider when checking for safety. 
             	List<Entry<Point, Bomb>> theoreticalBombs = new LinkedList<Entry<Point, Bomb>>();
-            	theoreticalBombs.add(new ExtraEntry<Point, Bomb>(node.position, new Bomb(curPlayer.playerIndex, curPlayer.bombRange, 15)));
+            	theoreticalBombs.add(new ExtraEntry<Point, Bomb>(curPlayer.position, new Bomb(curPlayer.playerIndex, curPlayer.bombRange, 15)));
         		
             	// Check if we have a safe spot. 
         		if (isSafeToMoveToPosition(node.position, theoreticalBombs)) {
@@ -133,26 +131,29 @@ public class PlayerAI implements Player {
         		}
         	}
         	
-        	List<Move.Direction> runFromBombDirections = new LinkedList<>();
-        	for (SearchNode node : safeNodes) {
-        		List<SearchNode> path = node.buildPathList();
-        		if (path.size() > 1) {
-        			SearchNode firstNode = path.get(0);
-        			SearchNode secondNode = path.get(1);
-        			Point diff = PointHelper.sub(secondNode.position, firstNode.position);
-        			Move.Direction direction = Move.getDirection(diff.x, diff.y);
-        			runFromBombDirections.add(direction);
-        		}
-        	}
+        	if (safeNodes.size() > 0) {
         	
-        	List<Move.Direction> finalValidMoves = new LinkedList<>();
-        	for (Move.Direction move : Move.getAllMovingMoves()) {
-        		if (validMoves.contains(move) && runFromBombDirections.contains(move))
-        			finalValidMoves.add(move);
+	        	List<Move.Direction> runFromBombDirections = new LinkedList<>();
+	        	for (SearchNode node : safeNodes) {
+	        		List<SearchNode> path = node.buildPathList();
+	        		if (path.size() > 1) {
+	        			SearchNode firstNode = path.get(0);
+	        			SearchNode secondNode = path.get(1);
+	        			Point diff = PointHelper.sub(secondNode.position, firstNode.position);
+	        			Move.Direction direction = Move.getDirection(diff.x, diff.y);
+	        			runFromBombDirections.add(direction);
+	        		}
+	        	}
+	        	
+	        	List<Move.Direction> finalValidMoves = new LinkedList<>();
+	        	for (Move.Direction move : Move.getAllMovingMoves()) {
+	        		if (validMoves.contains(move) && runFromBombDirections.contains(move))
+	        			finalValidMoves.add(move);
+	        	}
+	        	
+	        	validMoves = finalValidMoves;
+	            bombMove = true;
         	}
-        	
-        	validMoves = finalValidMoves;
-            bombMove = true;
         }
 
         /**
@@ -167,7 +168,6 @@ public class PlayerAI implements Player {
          * direction.
          */
         Move.Direction move = validMoves.get((int) (Math.random() * validMoves.size()));
-        
 
         if (bombMove) {
             return move.bombaction;

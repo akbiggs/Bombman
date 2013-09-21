@@ -52,7 +52,9 @@ public class MockBomb {
 			if (this.range >= positionDelta.y) {
 				return true;
 			}
-		} 
+		} else {
+			return true;
+		}
 		
 		return false;
 	}
