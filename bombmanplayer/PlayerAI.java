@@ -1,4 +1,5 @@
 import static com.orbischallenge.bombman.api.game.MapItems.*;
+
 import com.orbischallenge.bombman.api.game.MapItems;
 import com.orbischallenge.bombman.api.game.PlayerAction;
 import com.orbischallenge.bombman.api.game.PowerUps;
@@ -11,6 +12,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Queue;
+
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
+
+import org.junit.experimental.theories.Theories.TheoryAnchor;
+
+import sun.awt.image.ImageWatched.Link;
 
 /**
  *
@@ -88,8 +95,8 @@ public class PlayerAI implements Player {
          * Find which neighbours of Bomber's current position are currently unoccupied, so that I
          * can move into. Also counts how many blocks are neighbours.
          */
-        LinkedList<Move.Direction> validMoves = new LinkedList<>();
-        LinkedList<Move.Direction> blocks = new LinkedList<>();
+        List<Move.Direction> validMoves = new LinkedList<>();
+        LinkedList<Move.Direction> neighborBlocks = new LinkedList<>();
 
         for (Move.Direction move : Move.getAllMovingMoves()) {
             int x = curPosition.x + move.dx;
@@ -100,15 +107,50 @@ public class PlayerAI implements Player {
             }
             
             if (allBlocks.contains(new Point(x, y))) {
-                blocks.add(move);
+                neighborBlocks.add(move);
             }
         }
 
         /**
          * If there are blocks around and it's safe, I should place a bomb in my current square.
          */
-        if (!blocks.isEmpty() && this.isSafeToPlaceBomb(curPosition) && 
-        		this.howManyBlocksWillBombDestroy(curPosition, this.curPlayer.bombRange) > 0) {
+        if (!neighborBlocks.isEmpty() && this.isSafeToPlaceBomb(curPosition)) {
+        	
+        	// Get a set of the neighboring open tiles.
+        	SearchSet set = new SearchSet(curPosition, map, 5);
+        	
+        	// Look through all the tiles to see if any are safe with new bomb.
+        	List<SearchNode> safeNodes = new LinkedList<>();
+        	for (SearchNode node : set.nodes) {
+            	// Create a theoretical bomb to consider when checking for safety. 
+            	List<Entry<Point, Bomb>> theoreticalBombs = new LinkedList<Entry<Point, Bomb>>();
+            	theoreticalBombs.add(new ExtraEntry<Point, Bomb>(node.position, new Bomb(curPlayer.playerIndex, curPlayer.bombRange, 15)));
+        		
+            	// Check if we have a safe spot. 
+        		if (isSafeToMoveToPosition(node.position, theoreticalBombs)) {
+        			safeNodes.add(node);
+        		}
+        	}
+        	
+        	List<Move.Direction> runFromBombDirections = new LinkedList<>();
+        	for (SearchNode node : safeNodes) {
+        		List<SearchNode> path = node.buildPathList();
+        		if (path.size() > 1) {
+        			SearchNode firstNode = path.get(0);
+        			SearchNode secondNode = path.get(1);
+        			Point diff = PointHelper.sub(secondNode.position, firstNode.position);
+        			Move.Direction direction = Move.getDirection(diff.x, diff.y);
+        			runFromBombDirections.add(direction);
+        		}
+        	}
+        	
+        	List<Move.Direction> finalValidMoves = new LinkedList<>();
+        	for (Move.Direction move : Move.getAllMovingMoves()) {
+        		if (validMoves.contains(move) && runFromBombDirections.contains(move))
+        			finalValidMoves.add(move);
+        	}
+        	
+        	validMoves = finalValidMoves;
             bombMove = true;
         }
 
@@ -123,10 +165,8 @@ public class PlayerAI implements Player {
          * There is some place I could go, so I randomly choose one direction and go off in that
          * direction.
          */
-        
         Move.Direction move = validMoves.get((int) (Math.random() * validMoves.size()));
         
-        SearchSet set = new SearchSet(curPosition, map, 5);
 
         if (bombMove) {
             return move.bombaction;
@@ -140,11 +180,18 @@ public class PlayerAI implements Player {
 	}
     
     private boolean isSafeToMoveToPosition(Point position) {
+    	return isSafeToMoveToPosition(position, new LinkedList<Entry<Point, Bomb>>());
+    }
+    
+    private boolean isSafeToMoveToPosition(Point position, List<Entry<Point, Bomb>> theoreticalBombs) {
     	if (this.explosionLocations.contains(position)) {
     		return false;
     	}
     	
-    	for (Entry<Point, Bomb> pair : this.bombLocations.entrySet()) {
+    	// Append real bombs to the theoretical bombs.
+    	theoreticalBombs.addAll(this.bombLocations.entrySet());
+    	
+    	for (Entry<Point, Bomb> pair : theoreticalBombs) {
     		Point bombLocation = pair.getKey();
     		Bomb bomb = pair.getValue();
     		
