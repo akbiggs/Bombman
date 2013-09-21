@@ -202,7 +202,7 @@ public class PlayerAI implements Player {
 
     	return true;
     }
-
+    
     private int howManyBlocksWillBombDestroy(Point position, int bombRange) {
     	int numDestroyed = 0;
     	boolean hitsLeft = false;

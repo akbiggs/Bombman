@@ -39,21 +39,23 @@ public class MockBomb {
 	}
 	
 	public boolean isAboutToHitPosition(Point bomberPosition) {
-		Point positionDelta = new Point(Math.abs(bomberPosition.x
-					- this.position.x), Math.abs(bomberPosition.y - this.position.y));
-	
-		if (positionDelta.x > 0 && positionDelta.y > 0) {
-			return false;
-		} else if (positionDelta.x > 0) {
-			if (this.range >= positionDelta.x) {
-				return true;
-			}
-		} else if (positionDelta.y > 0) {
-			if (this.range >= positionDelta.y) {
-				return true;
-			}
-		} 
+		if (this.timeLeft <= this.range) {
+			Point positionDelta = new Point(Math.abs(bomberPosition.x
+						- this.position.x), Math.abs(bomberPosition.y - this.position.y));
 		
+			if (positionDelta.x > 0 && positionDelta.y > 0) {
+				return false;
+			} else if (positionDelta.x > 0) {
+				if (this.range >= positionDelta.x) {
+					return true;
+				}
+			} else if (positionDelta.y > 0) {
+				if (this.range >= positionDelta.y) {
+					return true;
+				}
+			} 
+		}
+
 		return false;
 	}
 	
