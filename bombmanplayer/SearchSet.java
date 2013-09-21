@@ -9,10 +9,10 @@ import com.orbischallenge.bombman.api.game.MapItems;
 
 public class SearchSet {
 
-	public List<SearchNode> nodesInSet;
+	public List<SearchNode> nodes;
 
 	public SearchSet(Point start, MapItems[][] map, int searchDistance) {
-		this.nodesInSet = buildSet(start, map, searchDistance);
+		this.nodes = buildSet(start, map, searchDistance);
 	}
 
 	/**
