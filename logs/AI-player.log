@@ -1,0 +1,23 @@
+21/09/2013 12:25:21.032] - [INFO] - [id: 0xdb525cf4] OPEN
+21/09/2013 12:25:21.047] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 => localhost/127.0.0.1:19999] BOUND: /127.0.0.1:53156
+21/09/2013 12:25:21.048] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 => localhost/127.0.0.1:19999] CONNECTED: localhost/127.0.0.1:19999
+21/09/2013 12:25:21.836] - [INFO] - message sent: took 8,360,000
+21/09/2013 12:25:22.202] - [INFO] - message sent: took 1,991,000
+21/09/2013 12:25:22.565] - [INFO] - message sent: took 2,230,000
+21/09/2013 12:25:22.935] - [INFO] - message sent: took 3,204,000
+21/09/2013 12:25:23.297] - [INFO] - message sent: took 2,450,000
+21/09/2013 12:25:23.654] - [INFO] - message sent: took 3,067,000
+21/09/2013 12:25:24.018] - [INFO] - message sent: took 2,400,000
+21/09/2013 12:25:24.381] - [INFO] - message sent: took 2,571,000
+21/09/2013 12:25:24.738] - [INFO] - message sent: took 2,012,000
+21/09/2013 12:25:25.096] - [INFO] - message sent: took 2,139,000
+21/09/2013 12:25:25.451] - [INFO] - message sent: took 1,854,000
+21/09/2013 12:25:25.807] - [INFO] - message sent: took 2,696,000
+21/09/2013 12:25:26.163] - [INFO] - message sent: took 2,808,000
+21/09/2013 12:25:26.529] - [INFO] - message sent: took 2,203,000
+21/09/2013 12:25:26.881] - [INFO] - message sent: took 1,829,000
+21/09/2013 12:25:27.237] - [INFO] - message sent: took 2,451,000
+21/09/2013 12:25:27.590] - [INFO] - message sent: took 2,508,000
+21/09/2013 12:25:49.696] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 :> localhost/127.0.0.1:19999] DISCONNECTED
+21/09/2013 12:25:49.699] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 :> localhost/127.0.0.1:19999] UNBOUND
+21/09/2013 12:25:49.701] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 :> localhost/127.0.0.1:19999] CLOSED
