@@ -3,10 +3,13 @@ import static com.orbischallenge.bombman.api.game.MapItems.*;
 import com.orbischallenge.bombman.api.game.MapItems;
 import com.orbischallenge.bombman.api.game.PlayerAction;
 import com.orbischallenge.bombman.api.game.PowerUps;
+import com.sun.org.apache.xml.internal.security.keys.content.KeyValue;
+
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Queue;
 
 /**
@@ -55,7 +58,6 @@ public class PlayerAI implements Player {
      */
     @Override
     public PlayerAction getMove(MapItems[][] map, HashMap<Point, Bomb> bombLocations, HashMap<Point, PowerUps> powerUpLocations, Bomber[] players, List<Point> explosionLocations, int playerIndex, int moveNumber) {
-
     	this.bombLocations = bombLocations;
     	this.powerUpLocations = powerUpLocations;
     	this.players = players;
@@ -89,7 +91,7 @@ public class PlayerAI implements Player {
             int x = curPosition.x + move.dx;
             int y = curPosition.y + move.dy;
 
-            if (map[x][y].isWalkable()) {
+            if (map[x][y].isWalkable() && this.isSafeToMoveToPosition(new Point(x, y))) {
                 validMoves.add(move);
             }
             
@@ -116,6 +118,7 @@ public class PlayerAI implements Player {
          * There is some place I could go, so I randomly choose one direction and go off in that
          * direction.
          */
+        
         Move.Direction move = validMoves.get((int) (Math.random() * validMoves.size()));
 
         if (bombMove) {
@@ -128,6 +131,36 @@ public class PlayerAI implements Player {
     private boolean isSafeToPlaceBomb(Point position) {
     	return this.bombLocations.keySet().size() == 0;
 	}
+    
+    private boolean isSafeToMoveToPosition(Point position) {
+    	
+    	if (this.explosionLocations.contains(position)) {
+    		return false;
+    	}
+    	
+    	for (Entry<Point, Bomb> pair : this.bombLocations.entrySet()) {
+    		Point bombLocation = pair.getKey();
+    		Bomb bomb = pair.getValue();
+    		
+    		System.out.println("Checking bomb at location: " + bombLocation.toString());
+    		
+    		Point positionDelta = new Point(Math.abs(position.x - bombLocation.x), Math.abs(position.y - bombLocation.y));
+
+    		if (positionDelta.x > 0 && positionDelta.y > 0) {
+    			continue;
+    		} else if (positionDelta.x > 0) {
+    			if (bomb.getRange() >= positionDelta.x) {
+    				return false;
+    			}
+    		} else if (positionDelta.y > 0) {
+    			if (bomb.getRange() >= positionDelta.y) {
+    				return false;
+    			}
+    		}
+    	}
+
+    	return true;
+    }
 
 	/**
      * Uses Breadth First Search to find if a walkable path from point A to point B exists.
@@ -166,6 +199,11 @@ public class PlayerAI implements Player {
                 // if we have already visited this point, we skip it
                 if (visited.contains(neighbour)) {
                     continue;
+                }
+                
+                // if the point isn't safe, we skip it
+                if (!this.isSafeToMoveToPosition(neighbour)) {
+                	continue;
                 }
 
                 // if bombers can walk onto this point, then we add it to the list of points we should check
