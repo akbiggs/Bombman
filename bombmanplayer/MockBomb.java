@@ -38,7 +38,7 @@ public class MockBomb {
 		this.isExploded = true;
 	}
 	
-	public boolean isHittingPosition(Point bomberPosition) {
+	public boolean isAboutToHitPosition(Point bomberPosition) {
 		Point positionDelta = new Point(Math.abs(bomberPosition.x
 					- this.position.x), Math.abs(bomberPosition.y - this.position.y));
 	

@@ -147,7 +147,7 @@ public class PlayerAI implements Player {
     	for (Entry<Point, Bomb> pair : this.bombLocations.entrySet()) {
     		MockBomb bomb = new MockBomb(pair.getKey(), pair.getValue());
     		
-    		if (bomb.isHittingPosition(position)) {
+    		if (bomb.isAboutToHitPosition(position)) {
     			return false;
     		}
     	}
