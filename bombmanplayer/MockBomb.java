@@ -1,5 +1,7 @@
 import java.awt.Point;
 
+import Helpers.PointHelper;
+
 /**
  * Mocks a bomb that hasn't been placed yet.
  * Also gives convenient helpers for existing bombs.
@@ -38,9 +40,13 @@ public class MockBomb {
 		this.isExploded = true;
 	}
 	
+	public boolean checkIfExploded() {
+		return this.isExploded;
+	}
+	
 	public boolean isHittingPosition(Point bomberPosition) {
 		Point positionDelta = new Point(Math.abs(bomberPosition.x
-					- this.position.x), Math.abs(bomberPosition.y - this.position.y));
+			- this.position.x), Math.abs(bomberPosition.y - this.position.y));
 	
 		if (positionDelta.x > 0 && positionDelta.y > 0) {
 			return false;
@@ -65,8 +71,6 @@ public class MockBomb {
 		}
 		
 		int potential = 0;
-		
 		return potential;
-		
 	}
 }

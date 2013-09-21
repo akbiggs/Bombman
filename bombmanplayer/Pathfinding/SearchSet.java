@@ -1,9 +1,14 @@
+package Pathfinding;
+import Move;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import Move.Direction;
 
 import com.orbischallenge.bombman.api.game.MapItems;
 

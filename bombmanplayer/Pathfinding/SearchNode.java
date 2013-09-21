@@ -1,3 +1,4 @@
+package Pathfinding;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;

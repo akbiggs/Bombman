@@ -1,4 +1,8 @@
 import static com.orbischallenge.bombman.api.game.MapItems.*;
+import Helpers.ExtraEntry;
+import Helpers.PointHelper;
+import Pathfinding.SearchNode;
+import Pathfinding.SearchSet;
 
 import com.orbischallenge.bombman.api.game.MapItems;
 import com.orbischallenge.bombman.api.game.PlayerAction;
@@ -14,7 +18,9 @@ import java.util.Map.Entry;
 import java.util.Queue;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
+
 import org.junit.experimental.theories.Theories.TheoryAnchor;
+
 import sun.awt.image.ImageWatched.Link;
 
 /**
