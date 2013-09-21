@@ -4,6 +4,7 @@ import com.orbischallenge.bombman.api.game.MapItems;
 import com.orbischallenge.bombman.api.game.PlayerAction;
 import com.orbischallenge.bombman.api.game.PowerUps;
 import com.orbischallenge.bombman.protocol.BomberManProtocol.Position;
+import com.orbischallenge.bombman.protocol.BomberManProtocol.PowerUp;
 import com.sun.org.apache.xml.internal.security.keys.content.KeyValue;
 
 import java.awt.Point;
@@ -25,15 +26,7 @@ import sun.awt.image.ImageWatched.Link;
  */
 public class PlayerAI implements Player {
 
-    List<Point> allBlocks;
-
-    HashMap<Point, Bomb> bombLocations;
-    HashMap<Point, PowerUps> powerUpLocations;
-    Bomber[] players;
-    List<Point> explosionLocations;
-    int playerIndex;
-    int moveNumber;
-    
+    MapState curState;
     Bomber curPlayer;
     
     /**
@@ -46,7 +39,8 @@ public class PlayerAI implements Player {
      */
     @Override
     public void newGame(MapItems[][] map, List<Point> blocks, Bomber[] players, int playerIndex) {
-        allBlocks = blocks;
+    	this.curState = new MapState(map, new HashMap<Point, Bomb>(), new HashMap<Point, PowerUps>(), players, new LinkedList<Point>());
+    	this.curState.allBlocks = blocks;
     }
 
     /**
@@ -67,12 +61,9 @@ public class PlayerAI implements Player {
      */
     @Override
     public PlayerAction getMove(MapItems[][] map, HashMap<Point, Bomb> bombLocations, HashMap<Point, PowerUps> powerUpLocations, Bomber[] players, List<Point> explosionLocations, int playerIndex, int moveNumber) {
-    	this.bombLocations = bombLocations;
-    	this.powerUpLocations = powerUpLocations;
-    	this.players = players;
-    	this.explosionLocations = explosionLocations;
-    	this.playerIndex = playerIndex;
-    	this.moveNumber = moveNumber;
+    	List<Point> allBlocks = this.curState.allBlocks;
+    	this.curState = new MapState(map, bombLocations, powerUpLocations, players, explosionLocations);
+    	this.curState.allBlocks = allBlocks;
     	
         boolean bombMove = false;
         
@@ -87,8 +78,8 @@ public class PlayerAI implements Player {
          * Keep track of which blocks are destroyed
          */
         for (Point explosions : explosionLocations) {
-            if (allBlocks.contains(explosions)) {
-                allBlocks.remove(explosions);
+            if (this.curState.allBlocks.contains(explosions)) {
+                this.curState.allBlocks.remove(explosions);
             }
         }
 
@@ -107,7 +98,7 @@ public class PlayerAI implements Player {
                 validMoves.add(move);
             }
             
-            if (allBlocks.contains(new Point(x, y))) {
+            if (this.curState.allBlocks.contains(new Point(x, y))) {
                 neighborBlocks.add(move);
             }
         }
@@ -177,7 +168,7 @@ public class PlayerAI implements Player {
     }
 
     private boolean isSafeToPlaceBomb(Point position) {
-    	return this.bombLocations.keySet().size() == 0;
+    	return this.curState.bombLocations.keySet().size() == 0;
 	}
     
     private boolean isSafeToMoveToPosition(Point position) {
@@ -185,12 +176,12 @@ public class PlayerAI implements Player {
     }
     
     private boolean isSafeToMoveToPosition(Point position, List<Entry<Point, Bomb>> theoreticalBombs) {
-    	if (this.explosionLocations.contains(position)) {
+    	if (this.curState.explosionLocations.contains(position)) {
     		return false;
     	}
     	
     	// Append real bombs to the theoretical bombs.
-    	theoreticalBombs.addAll(this.bombLocations.entrySet());
+    	theoreticalBombs.addAll(this.curState.bombLocations.entrySet());
     	
     	for (Entry<Point, Bomb> pair : theoreticalBombs) {
     		MockBomb bomb = new MockBomb(pair.getKey(), pair.getValue());
@@ -216,28 +207,28 @@ public class PlayerAI implements Player {
     		Point downPosition = new Point(position.x + i, position.y + i);
     		
     		if (!hitsLeft) {
-    			if (this.allBlocks.contains(leftPosition)) {
+    			if (this.curState.allBlocks.contains(leftPosition)) {
     				hitsLeft = true;
     				numDestroyed++;
     			}
     		}
     		
     		if (!hitsRight) {
-    			if (this.allBlocks.contains(rightPosition)) {
+    			if (this.curState.allBlocks.contains(rightPosition)) {
     				hitsRight = true;
     				numDestroyed++;
     			}
     		}
     		
     		if (!hitsUp) {
-    			if (this.allBlocks.contains(upPosition)) {
+    			if (this.curState.allBlocks.contains(upPosition)) {
     				hitsUp = true;
     				numDestroyed++;
     			}
     		}
     		
     		if (!hitsDown) {
-    			if (this.allBlocks.contains(downPosition)) {
+    			if (this.curState.allBlocks.contains(downPosition)) {
     				hitsDown = true;
     				numDestroyed++;
     			}
