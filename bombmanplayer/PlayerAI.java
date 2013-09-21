@@ -2,6 +2,7 @@ import static com.orbischallenge.bombman.api.game.MapItems.*;
 import com.orbischallenge.bombman.api.game.MapItems;
 import com.orbischallenge.bombman.api.game.PlayerAction;
 import com.orbischallenge.bombman.api.game.PowerUps;
+import com.orbischallenge.bombman.protocol.BomberManProtocol.Position;
 import com.sun.org.apache.xml.internal.security.keys.content.KeyValue;
 
 import java.awt.Point;
@@ -25,6 +26,8 @@ public class PlayerAI implements Player {
     List<Point> explosionLocations;
     int playerIndex;
     int moveNumber;
+    
+    Bomber curPlayer;
     
     /**
      * Gets called every time a new game starts.
@@ -65,10 +68,12 @@ public class PlayerAI implements Player {
     	this.moveNumber = moveNumber;
     	
         boolean bombMove = false;
+        
+        this.curPlayer = players[playerIndex];
         /**
          * Get Bomber's current position
          */
-        Point curPosition = players[playerIndex].position;
+        Point curPosition = curPlayer.position;
 
         /**
          * Keep track of which blocks are destroyed
@@ -102,7 +107,8 @@ public class PlayerAI implements Player {
         /**
          * If there are blocks around and it's safe, I should place a bomb in my current square.
          */
-        if (!blocks.isEmpty() && this.isSafeToPlaceBomb(curPosition)) {
+        if (!blocks.isEmpty() && this.isSafeToPlaceBomb(curPosition) && 
+        		this.howManyBlocksWillBombDestroy(curPosition, this.curPlayer.bombRange) > 0) {
             bombMove = true;
         }
 
@@ -134,7 +140,6 @@ public class PlayerAI implements Player {
 	}
     
     private boolean isSafeToMoveToPosition(Point position) {
-    	
     	if (this.explosionLocations.contains(position)) {
     		return false;
     	}
@@ -142,8 +147,6 @@ public class PlayerAI implements Player {
     	for (Entry<Point, Bomb> pair : this.bombLocations.entrySet()) {
     		Point bombLocation = pair.getKey();
     		Bomb bomb = pair.getValue();
-    		
-    		System.out.println("Checking bomb at location: " + bombLocation.toString());
     		
     		Point positionDelta = new Point(Math.abs(position.x - bombLocation.x), Math.abs(position.y - bombLocation.y));
 
@@ -162,7 +165,51 @@ public class PlayerAI implements Player {
 
     	return true;
     }
-     
+
+    private int howManyBlocksWillBombDestroy(Point position, int bombRange) {
+    	int numDestroyed = 0;
+    	boolean hitsLeft = false;
+    	boolean hitsRight = false;
+    	boolean hitsUp = false;
+    	boolean hitsDown = false;
+    	for (int i = 1; i <= bombRange; i++) {
+    		Point leftPosition = new Point(position.x - i, position.y);
+    		Point rightPosition = new Point(position.x + i, position.y);
+    		Point upPosition = new Point(position.x, position.y - i);
+    		Point downPosition = new Point(position.x + i, position.y + i);
+    		
+    		if (!hitsLeft) {
+    			if (this.allBlocks.contains(leftPosition)) {
+    				hitsLeft = true;
+    				numDestroyed++;
+    			}
+    		}
+    		
+    		if (!hitsRight) {
+    			if (this.allBlocks.contains(rightPosition)) {
+    				hitsRight = true;
+    				numDestroyed++;
+    			}
+    		}
+    		
+    		if (!hitsUp) {
+    			if (this.allBlocks.contains(upPosition)) {
+    				hitsUp = true;
+    				numDestroyed++;
+    			}
+    		}
+    		
+    		if (!hitsDown) {
+    			if (this.allBlocks.contains(downPosition)) {
+    				hitsDown = true;
+    				numDestroyed++;
+    			}
+    		}
+    	}
+    
+    	System.out.println("Bomb will destroy this many blocks: " + numDestroyed);
+    	return numDestroyed;
+    }
 
 	/**
      * Uses Breadth First Search to find if a walkable path from point A to point B exists.
