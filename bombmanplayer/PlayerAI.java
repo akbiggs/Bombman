@@ -1,4 +1,3 @@
-
 import static com.orbischallenge.bombman.api.game.MapItems.*;
 import com.orbischallenge.bombman.api.game.MapItems;
 import com.orbischallenge.bombman.api.game.PlayerAction;

@@ -21,3 +21,251 @@
 21/09/2013 12:25:49.696] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 :> localhost/127.0.0.1:19999] DISCONNECTED
 21/09/2013 12:25:49.699] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 :> localhost/127.0.0.1:19999] UNBOUND
 21/09/2013 12:25:49.701] - [INFO] - [id: 0xdb525cf4, /127.0.0.1:53156 :> localhost/127.0.0.1:19999] CLOSED
+21/09/2013 12:44:42.334] - [INFO] - [id: 0xc3f1b6e7] OPEN
+21/09/2013 12:44:43.358] - [INFO] - [id: 0xc3f1b6e7] CLOSED
+21/09/2013 12:44:43.427] - [SEVERE] - Unexptected exception from upstream.
+java.nio.channels.ClosedChannelException
+	at org.jboss.netty.channel.socket.oio.OioWorker.write(OioWorker.java:83)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.eventSunk(OioClientSocketPipelineSink.java:79)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:704)
+	at org.jboss.netty.channel.Channels.write(Channels.java:671)
+	at org.jboss.netty.channel.AbstractChannel.write(AbstractChannel.java:248)
+	at Client.run(Client.java:46)
+	at RunClient.main(RunClient.java:38)
+
+21/09/2013 12:44:57.658] - [INFO] - [id: 0x59e52365] OPEN
+21/09/2013 12:44:58.688] - [INFO] - [id: 0x59e52365] CLOSED
+21/09/2013 12:44:58.755] - [SEVERE] - Unexptected exception from upstream.
+java.nio.channels.ClosedChannelException
+	at org.jboss.netty.channel.socket.oio.OioWorker.write(OioWorker.java:83)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.eventSunk(OioClientSocketPipelineSink.java:79)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:704)
+	at org.jboss.netty.channel.Channels.write(Channels.java:671)
+	at org.jboss.netty.channel.AbstractChannel.write(AbstractChannel.java:248)
+	at Client.run(Client.java:46)
+	at RunClient.main(RunClient.java:38)
+
+21/09/2013 12:45:29.748] - [INFO] - [id: 0x0fba4380] OPEN
+21/09/2013 12:45:29.778] - [INFO] - [id: 0x0fba4380, /127.0.0.1:60425 => localhost/127.0.0.1:19999] BOUND: /127.0.0.1:60425
+21/09/2013 12:45:29.783] - [INFO] - [id: 0x0fba4380, /127.0.0.1:60425 => localhost/127.0.0.1:19999] CONNECTED: localhost/127.0.0.1:19999
+21/09/2013 12:45:30.469] - [INFO] - message sent: took 13,652,489
+21/09/2013 12:45:30.852] - [INFO] - message sent: took 5,037,281
+21/09/2013 12:45:31.224] - [INFO] - message sent: took 3,810,823
+21/09/2013 12:45:31.597] - [INFO] - message sent: took 5,115,045
+21/09/2013 12:45:31.965] - [INFO] - message sent: took 4,860,833
+21/09/2013 12:45:32.349] - [INFO] - message sent: took 7,290,459
+21/09/2013 12:45:32.721] - [INFO] - message sent: took 4,387,933
+21/09/2013 12:45:33.092] - [INFO] - message sent: took 4,413,197
+21/09/2013 12:45:33.453] - [INFO] - message sent: took 3,362,792
+21/09/2013 12:45:33.814] - [INFO] - message sent: took 3,407,794
+21/09/2013 12:45:34.175] - [INFO] - message sent: took 3,396,741
+21/09/2013 12:45:34.536] - [INFO] - message sent: took 3,256,608
+21/09/2013 12:45:34.903] - [INFO] - message sent: took 5,754,130
+21/09/2013 12:45:35.262] - [INFO] - message sent: took 3,330,029
+21/09/2013 12:45:35.648] - [INFO] - message sent: took 4,460,565
+21/09/2013 12:45:36.010] - [INFO] - message sent: took 4,391,091
+21/09/2013 12:45:36.369] - [INFO] - message sent: took 4,458,987
+21/09/2013 12:45:36.726] - [INFO] - message sent: took 3,239,239
+21/09/2013 12:45:37.082] - [INFO] - message sent: took 3,229,370
+21/09/2013 12:45:37.450] - [INFO] - message sent: took 4,933,859
+21/09/2013 12:45:37.817] - [INFO] - message sent: took 4,747,937
+21/09/2013 12:45:38.176] - [INFO] - message sent: took 3,348,187
+21/09/2013 12:45:38.533] - [INFO] - message sent: took 3,779,244
+21/09/2013 12:45:38.891] - [INFO] - message sent: took 3,368,319
+21/09/2013 12:45:39.246] - [INFO] - message sent: took 3,283,450
+21/09/2013 12:45:39.615] - [INFO] - message sent: took 5,115,045
+21/09/2013 12:45:40.047] - [INFO] - message sent: took 4,629,514
+21/09/2013 12:45:40.424] - [INFO] - message sent: took 3,335,161
+21/09/2013 12:45:40.777] - [INFO] - message sent: took 3,408,978
+21/09/2013 12:45:41.133] - [INFO] - message sent: took 5,591,892
+21/09/2013 12:45:41.487] - [INFO] - message sent: took 3,446,872
+21/09/2013 12:45:41.842] - [INFO] - message sent: took 4,703,331
+21/09/2013 12:45:42.198] - [INFO] - message sent: took 7,342,565
+21/09/2013 12:45:45.408] - [INFO] - [id: 0x0fba4380, /127.0.0.1:60425 :> localhost/127.0.0.1:19999] DISCONNECTED
+21/09/2013 12:45:45.412] - [INFO] - [id: 0x0fba4380, /127.0.0.1:60425 :> localhost/127.0.0.1:19999] UNBOUND
+21/09/2013 12:45:45.417] - [INFO] - [id: 0x0fba4380, /127.0.0.1:60425 :> localhost/127.0.0.1:19999] CLOSED
+21/09/2013 12:47:00.981] - [INFO] - [id: 0x092f0d47] OPEN
+21/09/2013 12:47:02.041] - [INFO] - [id: 0x092f0d47] CLOSED
+21/09/2013 12:47:02.108] - [SEVERE] - Unexptected exception from upstream.
+java.nio.channels.ClosedChannelException
+	at org.jboss.netty.channel.socket.oio.OioWorker.write(OioWorker.java:83)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.eventSunk(OioClientSocketPipelineSink.java:79)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:704)
+	at org.jboss.netty.channel.Channels.write(Channels.java:671)
+	at org.jboss.netty.channel.AbstractChannel.write(AbstractChannel.java:248)
+	at Client.run(Client.java:46)
+	at RunClient.main(RunClient.java:38)
+
+21/09/2013 12:47:18.653] - [INFO] - [id: 0x58ba93f5] OPEN
+21/09/2013 12:47:18.677] - [INFO] - [id: 0x58ba93f5, /127.0.0.1:60428 => localhost/127.0.0.1:19999] BOUND: /127.0.0.1:60428
+21/09/2013 12:47:18.681] - [INFO] - [id: 0x58ba93f5, /127.0.0.1:60428 => localhost/127.0.0.1:19999] CONNECTED: localhost/127.0.0.1:19999
+21/09/2013 12:47:19.351] - [INFO] - message sent: took 12,389,320
+21/09/2013 12:47:19.732] - [INFO] - message sent: took 4,159,773
+21/09/2013 12:47:20.101] - [INFO] - message sent: took 3,728,717
+21/09/2013 12:47:20.476] - [INFO] - message sent: took 4,982,413
+21/09/2013 12:47:20.851] - [INFO] - message sent: took 5,152,545
+21/09/2013 12:47:21.222] - [INFO] - message sent: took 5,760,446
+21/09/2013 12:47:21.587] - [INFO] - message sent: took 3,279,503
+21/09/2013 12:47:21.955] - [INFO] - message sent: took 3,199,370
+21/09/2013 12:47:22.015] - [INFO] - [id: 0x58ba93f5, /127.0.0.1:60428 :> localhost/127.0.0.1:19999] DISCONNECTED
+21/09/2013 12:47:22.020] - [INFO] - [id: 0x58ba93f5, /127.0.0.1:60428 :> localhost/127.0.0.1:19999] UNBOUND
+21/09/2013 12:47:22.025] - [INFO] - [id: 0x58ba93f5, /127.0.0.1:60428 :> localhost/127.0.0.1:19999] CLOSED
+21/09/2013 12:47:30.037] - [INFO] - [id: 0xe41773b1] OPEN
+21/09/2013 12:47:30.062] - [INFO] - [id: 0xe41773b1, /127.0.0.1:60429 => localhost/127.0.0.1:19999] BOUND: /127.0.0.1:60429
+21/09/2013 12:47:30.067] - [INFO] - [id: 0xe41773b1, /127.0.0.1:60429 => localhost/127.0.0.1:19999] CONNECTED: localhost/127.0.0.1:19999
+21/09/2013 12:47:30.749] - [INFO] - message sent: took 13,062,747
+21/09/2013 12:47:31.136] - [INFO] - message sent: took 5,480,969
+21/09/2013 12:47:31.509] - [INFO] - message sent: took 4,486,619
+21/09/2013 12:47:31.883] - [INFO] - message sent: took 5,062,940
+21/09/2013 12:47:32.251] - [INFO] - message sent: took 4,131,353
+21/09/2013 12:47:32.624] - [INFO] - message sent: took 5,349,521
+21/09/2013 12:47:32.991] - [INFO] - message sent: took 3,276,344
+21/09/2013 12:47:33.358] - [INFO] - message sent: took 3,274,765
+21/09/2013 12:47:33.717] - [INFO] - message sent: took 3,200,160
+21/09/2013 12:47:34.094] - [INFO] - message sent: took 4,158,195
+21/09/2013 12:47:34.457] - [INFO] - message sent: took 5,238,599
+21/09/2013 12:47:34.817] - [INFO] - message sent: took 3,276,345
+21/09/2013 12:47:35.179] - [INFO] - message sent: took 3,298,451
+21/09/2013 12:47:35.542] - [INFO] - message sent: took 3,806,876
+21/09/2013 12:47:35.917] - [INFO] - message sent: took 3,352,135
+21/09/2013 12:47:36.275] - [INFO] - message sent: took 3,715,296
+21/09/2013 12:47:36.633] - [INFO] - message sent: took 3,524,636
+21/09/2013 12:47:36.993] - [INFO] - message sent: took 3,430,294
+21/09/2013 12:47:37.357] - [INFO] - message sent: took 4,480,302
+21/09/2013 12:47:37.721] - [INFO] - message sent: took 4,489,777
+21/09/2013 12:47:38.077] - [INFO] - message sent: took 3,956,087
+21/09/2013 12:47:38.434] - [INFO] - message sent: took 4,232,011
+21/09/2013 12:47:38.793] - [INFO] - message sent: took 5,431,627
+21/09/2013 12:47:39.153] - [INFO] - message sent: took 3,371,082
+21/09/2013 12:47:39.510] - [INFO] - message sent: took 3,288,187
+21/09/2013 12:47:39.884] - [INFO] - message sent: took 5,625,444
+21/09/2013 12:47:40.275] - [INFO] - message sent: took 7,098,220
+21/09/2013 12:47:40.633] - [INFO] - message sent: took 4,516,224
+21/09/2013 12:47:40.985] - [INFO] - message sent: took 3,434,240
+21/09/2013 12:47:41.337] - [INFO] - message sent: took 3,214,370
+21/09/2013 12:47:41.689] - [INFO] - message sent: took 3,227,396
+21/09/2013 12:47:42.043] - [INFO] - message sent: took 4,471,618
+21/09/2013 12:47:42.414] - [INFO] - message sent: took 21,527,558
+21/09/2013 12:47:42.771] - [INFO] - message sent: took 9,864,166
+21/09/2013 12:47:43.120] - [INFO] - message sent: took 952,113
+21/09/2013 12:47:43.465] - [INFO] - message sent: took 588,953
+21/09/2013 12:47:43.812] - [INFO] - message sent: took 498,952
+21/09/2013 12:47:44.163] - [INFO] - message sent: took 579,873
+21/09/2013 12:47:44.511] - [INFO] - message sent: took 453,557
+21/09/2013 12:47:44.858] - [INFO] - message sent: took 476,057
+21/09/2013 12:47:45.204] - [INFO] - message sent: took 479,214
+21/09/2013 12:47:45.550] - [INFO] - message sent: took 478,820
+21/09/2013 12:47:45.899] - [INFO] - message sent: took 470,925
+21/09/2013 12:47:46.246] - [INFO] - message sent: took 469,346
+21/09/2013 12:47:46.593] - [INFO] - message sent: took 473,688
+21/09/2013 12:47:46.940] - [INFO] - message sent: took 535,663
+21/09/2013 12:47:47.291] - [INFO] - message sent: took 641,453
+21/09/2013 12:47:47.637] - [INFO] - message sent: took 504,873
+21/09/2013 12:47:47.984] - [INFO] - message sent: took 505,268
+21/09/2013 12:47:48.329] - [INFO] - message sent: took 519,478
+21/09/2013 12:47:48.675] - [INFO] - message sent: took 500,926
+21/09/2013 12:47:49.024] - [INFO] - message sent: took 477,241
+21/09/2013 12:47:49.369] - [INFO] - message sent: took 478,820
+21/09/2013 12:47:49.716] - [INFO] - message sent: took 479,610
+21/09/2013 12:47:50.062] - [INFO] - message sent: took 504,873
+21/09/2013 12:47:50.408] - [INFO] - message sent: took 529,347
+21/09/2013 12:47:54.357] - [INFO] - [id: 0xe41773b1, /127.0.0.1:60429 :> localhost/127.0.0.1:19999] DISCONNECTED
+21/09/2013 12:47:54.361] - [INFO] - [id: 0xe41773b1, /127.0.0.1:60429 :> localhost/127.0.0.1:19999] UNBOUND
+21/09/2013 12:47:54.363] - [INFO] - [id: 0xe41773b1, /127.0.0.1:60429 :> localhost/127.0.0.1:19999] CLOSED
+21/09/2013 12:48:19.793] - [INFO] - [id: 0x824b2690] OPEN
+21/09/2013 12:48:19.818] - [INFO] - [id: 0x824b2690, /127.0.0.1:60430 => localhost/127.0.0.1:19999] BOUND: /127.0.0.1:60430
+21/09/2013 12:48:19.821] - [INFO] - [id: 0x824b2690, /127.0.0.1:60430 => localhost/127.0.0.1:19999] CONNECTED: localhost/127.0.0.1:19999
+21/09/2013 12:48:20.471] - [INFO] - message sent: took 13,260,512
+21/09/2013 12:48:20.852] - [INFO] - message sent: took 5,422,547
+21/09/2013 12:48:21.226] - [INFO] - message sent: took 3,705,427
+21/09/2013 12:48:21.599] - [INFO] - message sent: took 4,948,859
+21/09/2013 12:48:21.990] - [INFO] - message sent: took 6,083,343
+21/09/2013 12:48:22.163] - [INFO] - [id: 0x824b2690, /127.0.0.1:60430 :> localhost/127.0.0.1:19999] DISCONNECTED
+21/09/2013 12:48:22.166] - [INFO] - [id: 0x824b2690, /127.0.0.1:60430 :> localhost/127.0.0.1:19999] UNBOUND
+21/09/2013 12:48:22.169] - [INFO] - [id: 0x824b2690, /127.0.0.1:60430 :> localhost/127.0.0.1:19999] CLOSED
+21/09/2013 12:48:41.880] - [INFO] - [id: 0x0294681f] OPEN
+21/09/2013 12:48:41.905] - [INFO] - [id: 0x0294681f, /127.0.0.1:60431 => localhost/127.0.0.1:19999] BOUND: /127.0.0.1:60431
+21/09/2013 12:48:41.909] - [INFO] - [id: 0x0294681f, /127.0.0.1:60431 => localhost/127.0.0.1:19999] CONNECTED: localhost/127.0.0.1:19999
+21/09/2013 12:48:42.577] - [INFO] - message sent: took 13,661,173
+21/09/2013 12:48:42.962] - [INFO] - message sent: took 4,492,540
+21/09/2013 12:48:43.348] - [INFO] - message sent: took 5,672,024
+21/09/2013 12:48:43.726] - [INFO] - message sent: took 4,852,543
+21/09/2013 12:48:44.103] - [INFO] - message sent: took 4,638,594
+21/09/2013 12:48:44.474] - [INFO] - message sent: took 5,041,229
+21/09/2013 12:48:44.840] - [INFO] - message sent: took 3,251,476
+21/09/2013 12:48:45.204] - [INFO] - message sent: took 3,222,265
+21/09/2013 12:48:45.566] - [INFO] - message sent: took 4,384,776
+21/09/2013 12:48:45.925] - [INFO] - message sent: took 3,294,108
+21/09/2013 12:48:46.287] - [INFO] - message sent: took 3,468,189
+21/09/2013 12:48:46.650] - [INFO] - message sent: took 4,084,772
+21/09/2013 12:48:47.013] - [INFO] - message sent: took 3,376,609
+21/09/2013 12:48:47.377] - [INFO] - message sent: took 3,645,427
+21/09/2013 12:48:47.749] - [INFO] - message sent: took 3,411,346
+21/09/2013 12:48:48.107] - [INFO] - message sent: took 3,701,874
+21/09/2013 12:48:56.545] - [INFO] - [id: 0x0294681f, /127.0.0.1:60431 :> localhost/127.0.0.1:19999] DISCONNECTED
+21/09/2013 12:48:56.550] - [INFO] - [id: 0x0294681f, /127.0.0.1:60431 :> localhost/127.0.0.1:19999] UNBOUND
+21/09/2013 12:48:56.554] - [INFO] - [id: 0x0294681f, /127.0.0.1:60431 :> localhost/127.0.0.1:19999] CLOSED
+21/09/2013 01:00:04.224] - [INFO] - [id: 0xe2e0053c] OPEN
+21/09/2013 01:00:05.239] - [INFO] - [id: 0xe2e0053c] CLOSED
+21/09/2013 01:00:05.263] - [SEVERE] - Unexptected exception from upstream.
+java.nio.channels.ClosedChannelException
+	at org.jboss.netty.channel.socket.oio.OioWorker.write(OioWorker.java:83)
+	at org.jboss.netty.channel.socket.oio.OioClientSocketPipelineSink.eventSunk(OioClientSocketPipelineSink.java:79)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:725)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.doEncode(OneToOneEncoder.java:71)
+	at org.jboss.netty.handler.codec.oneone.OneToOneEncoder.handleDownstream(OneToOneEncoder.java:59)
+	at org.jboss.netty.channel.Channels.write(Channels.java:704)
+	at org.jboss.netty.channel.Channels.write(Channels.java:671)
+	at org.jboss.netty.channel.AbstractChannel.write(AbstractChannel.java:248)
+	at Client.run(Client.java:46)
+	at RunClient.main(RunClient.java:38)
+
+21/09/2013 01:00:14.217] - [INFO] - [id: 0x966aad22] OPEN
+21/09/2013 01:00:14.227] - [INFO] - [id: 0x966aad22, /127.0.0.1:60510 => localhost/127.0.0.1:19999] BOUND: /127.0.0.1:60510
+21/09/2013 01:00:14.229] - [INFO] - [id: 0x966aad22, /127.0.0.1:60510 => localhost/127.0.0.1:19999] CONNECTED: localhost/127.0.0.1:19999
+21/09/2013 01:00:14.698] - [INFO] - message sent: took 5,548,864
+21/09/2013 01:00:15.045] - [INFO] - message sent: took 1,936,991
+21/09/2013 01:00:15.388] - [INFO] - message sent: took 1,515,013
+21/09/2013 01:00:15.733] - [INFO] - message sent: took 2,111,860
+21/09/2013 01:00:16.076] - [INFO] - message sent: took 2,104,755
+21/09/2013 01:00:16.420] - [INFO] - message sent: took 2,340,020
+21/09/2013 01:00:16.761] - [INFO] - message sent: took 1,472,381
+21/09/2013 01:00:17.102] - [INFO] - message sent: took 1,359,881
+21/09/2013 01:00:17.449] - [INFO] - message sent: took 1,711,199
+21/09/2013 01:00:17.792] - [INFO] - message sent: took 1,762,515
+21/09/2013 01:00:18.132] - [INFO] - message sent: took 1,374,092
+21/09/2013 01:00:18.472] - [INFO] - message sent: took 1,508,302
+21/09/2013 01:00:18.812] - [INFO] - message sent: took 1,346,064
+21/09/2013 01:00:19.152] - [INFO] - message sent: took 1,333,433
+21/09/2013 01:00:19.503] - [INFO] - message sent: took 1,464,882
+21/09/2013 01:00:19.846] - [INFO] - message sent: took 1,914,096
+21/09/2013 01:00:20.188] - [INFO] - message sent: took 2,440,679
+21/09/2013 01:00:20.528] - [INFO] - message sent: took 1,337,380
+21/09/2013 01:00:20.868] - [INFO] - message sent: took 1,863,964
+21/09/2013 01:00:21.209] - [INFO] - message sent: took 2,040,018
+21/09/2013 01:00:21.550] - [INFO] - message sent: took 1,696,594
+21/09/2013 01:00:21.888] - [INFO] - message sent: took 1,344,486
+21/09/2013 01:00:26.428] - [INFO] - [id: 0x966aad22, /127.0.0.1:60510 :> localhost/127.0.0.1:19999] DISCONNECTED
+21/09/2013 01:00:26.429] - [INFO] - [id: 0x966aad22, /127.0.0.1:60510 :> localhost/127.0.0.1:19999] UNBOUND
+21/09/2013 01:00:26.431] - [INFO] - [id: 0x966aad22, /127.0.0.1:60510 :> localhost/127.0.0.1:19999] CLOSED

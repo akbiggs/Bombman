@@ -1,68 +1,82 @@
-21/09/2013 12:25:21.130 - GameLog] - [FINE] - A new game is starting
-21/09/2013 12:25:21.174 - GameLog] - [FINE] - Current standing -- Human1 0 Wins | player 0 Wins
-21/09/2013 12:25:21.823 - ResponseLog] - [FINE] - Turn 1
-21/09/2013 12:25:21.838 - ResponseLog] - [FINE] - player did not respond in time
-21/09/2013 12:25:21.839 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:22.194 - ResponseLog] - [FINE] - Turn 2
-21/09/2013 12:25:22.203 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:22.204 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space UP
-21/09/2013 12:25:22.558 - ResponseLog] - [FINE] - Turn 3
-21/09/2013 12:25:22.567 - ResponseLog] - [FINE] - player placed bomb at 15, 14
-21/09/2013 12:25:22.568 - ResponseLog] - [FINE] - player(15, 14) is moving 1 space DOWN
-21/09/2013 12:25:22.568 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:22.923 - ResponseLog] - [FINE] - Turn 4
-21/09/2013 12:25:22.936 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:22.936 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
-21/09/2013 12:25:23.291 - ResponseLog] - [FINE] - Turn 5
-21/09/2013 12:25:23.297 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:23.298 - ResponseLog] - [FINE] - player placed bomb at 14, 15
-21/09/2013 12:25:23.298 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
-21/09/2013 12:25:23.647 - ResponseLog] - [FINE] - Turn 6
-21/09/2013 12:25:23.657 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:23.658 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:24.012 - ResponseLog] - [FINE] - Turn 7
-21/09/2013 12:25:24.019 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:24.019 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:24.374 - ResponseLog] - [FINE] - Turn 8
-21/09/2013 12:25:24.381 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:24.382 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:24.735 - ResponseLog] - [FINE] - Turn 9
-21/09/2013 12:25:24.739 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:24.739 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:25.092 - ResponseLog] - [FINE] - Turn 10
-21/09/2013 12:25:25.096 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:25.097 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:25.448 - ResponseLog] - [FINE] - Turn 11
-21/09/2013 12:25:25.452 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:25.452 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:25.803 - ResponseLog] - [FINE] - Turn 12
-21/09/2013 12:25:25.808 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:25.809 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:26.158 - ResponseLog] - [FINE] - Turn 13
-21/09/2013 12:25:26.164 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:26.164 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:26.524 - ResponseLog] - [FINE] - Turn 14
-21/09/2013 12:25:26.530 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:26.530 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:26.878 - ResponseLog] - [FINE] - Turn 15
-21/09/2013 12:25:26.882 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:26.883 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:27.233 - ResponseLog] - [FINE] - Turn 16
-21/09/2013 12:25:27.238 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:27.238 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:27.586 - ResponseLog] - [FINE] - Turn 17
-21/09/2013 12:25:27.590 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
-21/09/2013 12:25:27.591 - ResponseLog] - [FINE] - player (15, 15) is STAYING STILL
-21/09/2013 12:25:27.939 - MapLog] - [FINE] - Bomb at 15, 14 exploded!
-21/09/2013 12:25:27.941 - MapLog] - [FINE] - Bomb at 15, 14 caused 15, 13 to explode!
-21/09/2013 12:25:27.941 - MapLog] - [FINE] - Bomb at 15, 14 caused 15, 15 to explode!
-21/09/2013 12:25:27.942 - GameLog] - [FINE] - player is bombed by player
-21/09/2013 12:25:27.942 - GameLog] - [FINE] - Game Results: Human1 WINS
-21/09/2013 12:25:27.942 - ResponseLog] - [FINE] - Turn 18
-21/09/2013 12:25:27.942 - GameLog] - [FINE] - Adding game results: 
-21/09/2013 12:25:29.676 - MapLog] - [FINE] - Bomb at 15, 14 finished exploding!
-21/09/2013 12:25:29.676 - MapLog] - [FINE] - A FIREUP appeared at 15, 13!
-21/09/2013 12:25:49.692 - GameLog] - [FINE] - Final Results: Human1 WINS
-21/09/2013 12:25:49.695 - GameLog] - [FINE] - Player player left
-21/09/2013 12:25:49.709 - GameLog] - [FINE] - Games took 0:28
+21/09/2013 01:00:14.290 - GameLog] - [FINE] - A new game is starting
+21/09/2013 01:00:14.319 - GameLog] - [FINE] - Current standing -- Human1 0 Wins | player 0 Wins
+21/09/2013 01:00:14.687 - ResponseLog] - [FINE] - Turn 1
+21/09/2013 01:00:14.701 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:14.701 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:15.039 - ResponseLog] - [FINE] - Turn 2
+21/09/2013 01:00:15.046 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:15.046 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:15.384 - ResponseLog] - [FINE] - Turn 3
+21/09/2013 01:00:15.388 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:15.389 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:15.727 - ResponseLog] - [FINE] - Turn 4
+21/09/2013 01:00:15.734 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:15.734 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:16.071 - ResponseLog] - [FINE] - Turn 5
+21/09/2013 01:00:16.076 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:16.077 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:16.414 - ResponseLog] - [FINE] - Turn 6
+21/09/2013 01:00:16.420 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:16.421 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:16.758 - ResponseLog] - [FINE] - Turn 7
+21/09/2013 01:00:16.761 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:16.762 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space UP
+21/09/2013 01:00:17.098 - ResponseLog] - [FINE] - Turn 8
+21/09/2013 01:00:17.103 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:17.105 - ResponseLog] - [FINE] - player placed bomb at 15, 14
+21/09/2013 01:00:17.105 - ResponseLog] - [FINE] - player(15, 14) is moving 1 space DOWN
+21/09/2013 01:00:17.445 - ResponseLog] - [FINE] - Turn 9
+21/09/2013 01:00:17.449 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:17.450 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:17.789 - ResponseLog] - [FINE] - Turn 10
+21/09/2013 01:00:17.792 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:17.792 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:18.130 - ResponseLog] - [FINE] - Turn 11
+21/09/2013 01:00:18.132 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:18.132 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:18.469 - ResponseLog] - [FINE] - Turn 12
+21/09/2013 01:00:18.472 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:18.473 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space LEFT
+21/09/2013 01:00:18.810 - ResponseLog] - [FINE] - Turn 13
+21/09/2013 01:00:18.813 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:18.813 - ResponseLog] - [FINE] - player placed bomb at 13, 15
+21/09/2013 01:00:18.814 - ResponseLog] - [FINE] - player(13, 15) is moving 1 space RIGHT
+21/09/2013 01:00:19.150 - ResponseLog] - [FINE] - Turn 14
+21/09/2013 01:00:19.159 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:19.160 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:19.499 - ResponseLog] - [FINE] - Turn 15
+21/09/2013 01:00:19.503 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:19.503 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:19.843 - ResponseLog] - [FINE] - Turn 16
+21/09/2013 01:00:19.847 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:19.847 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:20.184 - ResponseLog] - [FINE] - Turn 17
+21/09/2013 01:00:20.188 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:20.189 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:20.526 - ResponseLog] - [FINE] - Turn 18
+21/09/2013 01:00:20.529 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:20.529 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:20.865 - ResponseLog] - [FINE] - Turn 19
+21/09/2013 01:00:20.869 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:20.869 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:21.206 - ResponseLog] - [FINE] - Turn 20
+21/09/2013 01:00:21.210 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:21.210 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:21.547 - ResponseLog] - [FINE] - Turn 21
+21/09/2013 01:00:21.550 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:21.551 - ResponseLog] - [FINE] - player(15, 15) is moving 1 space LEFT
+21/09/2013 01:00:21.886 - ResponseLog] - [FINE] - Turn 22
+21/09/2013 01:00:21.888 - ResponseLog] - [FINE] - player(14, 15) is moving 1 space RIGHT
+21/09/2013 01:00:21.889 - ResponseLog] - [FINE] - Human1 (1, 1) is STAYING STILL
+21/09/2013 01:00:22.223 - MapLog] - [FINE] - Bomb at 15, 14 exploded!
+21/09/2013 01:00:22.224 - MapLog] - [FINE] - Bomb at 15, 14 caused 15, 13 to explode!
+21/09/2013 01:00:22.224 - MapLog] - [FINE] - Bomb at 15, 14 caused 15, 15 to explode!
+21/09/2013 01:00:22.225 - GameLog] - [FINE] - player is bombed by player
+21/09/2013 01:00:22.225 - GameLog] - [FINE] - Game Results: Human1 WINS
+21/09/2013 01:00:22.225 - ResponseLog] - [FINE] - Turn 23
+21/09/2013 01:00:22.225 - GameLog] - [FINE] - Adding game results: 
+21/09/2013 01:00:23.889 - MapLog] - [FINE] - Bomb at 15, 14 finished exploding!
+21/09/2013 01:00:26.425 - GameLog] - [FINE] - Final Results: Human1 WINS
+21/09/2013 01:00:26.427 - GameLog] - [FINE] - Player player left
+21/09/2013 01:00:26.451 - GameLog] - [FINE] - Games took 0:12
 
