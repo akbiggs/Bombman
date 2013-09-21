@@ -70,6 +70,7 @@ public class PlayerAI implements Player {
         boolean bombMove = false;
         
         this.curPlayer = players[playerIndex];
+
         /**
          * Get Bomber's current position
          */
@@ -123,7 +124,6 @@ public class PlayerAI implements Player {
          * There is some place I could go, so I randomly choose one direction and go off in that
          * direction.
          */
-        
         Move.Direction move = validMoves.get((int) (Math.random() * validMoves.size()));
         
         SearchSet set = new SearchSet(curPosition, map, 5);
@@ -145,21 +145,10 @@ public class PlayerAI implements Player {
     	}
     	
     	for (Entry<Point, Bomb> pair : this.bombLocations.entrySet()) {
-    		Point bombLocation = pair.getKey();
-    		Bomb bomb = pair.getValue();
+    		MockBomb bomb = new MockBomb(pair.getKey(), pair.getValue());
     		
-    		Point positionDelta = new Point(Math.abs(position.x - bombLocation.x), Math.abs(position.y - bombLocation.y));
-
-    		if (positionDelta.x > 0 && positionDelta.y > 0) {
-    			continue;
-    		} else if (positionDelta.x > 0) {
-    			if (bomb.getRange() >= positionDelta.x) {
-    				return false;
-    			}
-    		} else if (positionDelta.y > 0) {
-    			if (bomb.getRange() >= positionDelta.y) {
-    				return false;
-    			}
+    		if (bomb.isHittingPosition(position)) {
+    			return false;
     		}
     	}
 
