@@ -77,6 +77,7 @@ public class PlayerAI implements Player {
         boolean bombMove = false;
         
         this.curPlayer = players[playerIndex];
+
         /**
          * Get Bomber's current position
          */
@@ -192,21 +193,10 @@ public class PlayerAI implements Player {
     	theoreticalBombs.addAll(this.bombLocations.entrySet());
     	
     	for (Entry<Point, Bomb> pair : theoreticalBombs) {
-    		Point bombLocation = pair.getKey();
-    		Bomb bomb = pair.getValue();
+    		MockBomb bomb = new MockBomb(pair.getKey(), pair.getValue());
     		
-    		Point positionDelta = new Point(Math.abs(position.x - bombLocation.x), Math.abs(position.y - bombLocation.y));
-
-    		if (positionDelta.x > 0 && positionDelta.y > 0) {
-    			continue;
-    		} else if (positionDelta.x > 0) {
-    			if (bomb.getRange() >= positionDelta.x) {
-    				return false;
-    			}
-    		} else if (positionDelta.y > 0) {
-    			if (bomb.getRange() >= positionDelta.y) {
-    				return false;
-    			}
+    		if (bomb.isHittingPosition(position)) {
+    			return false;
     		}
     	}
 
