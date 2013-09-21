@@ -119,12 +119,14 @@ public class PlayerAI implements Player {
          */
         
         Move.Direction move = validMoves.get((int) (Math.random() * validMoves.size()));
+        
+        SearchSet set = new SearchSet(curPosition, map, 5);
 
         if (bombMove) {
             return move.bombaction;
         }
+        
         return move.action;
-
     }
 
     private boolean isSafeToPlaceBomb(Point position) {
@@ -160,6 +162,7 @@ public class PlayerAI implements Player {
 
     	return true;
     }
+     
 
 	/**
      * Uses Breadth First Search to find if a walkable path from point A to point B exists.
