@@ -1,7 +1,5 @@
 import java.awt.Point;
 
-import Helpers.PointHelper;
-
 /**
  * Mocks a bomb that hasn't been placed yet.
  * Also gives convenient helpers for existing bombs.

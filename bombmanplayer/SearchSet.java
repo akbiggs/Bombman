@@ -1,5 +1,3 @@
-package Pathfinding;
-import Move;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -7,8 +5,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
-import Move.Direction;
 
 import com.orbischallenge.bombman.api.game.MapItems;
 
@@ -53,6 +49,8 @@ public class SearchSet {
 			// Check if the current node is acceptable
 			if (map[curNode.position.x][curNode.position.y].isWalkable())
 				accepted.add(curNode);
+			
+			
 
 			// Consider all the neighbors of the current point in question
 			for (Move.Direction direction : Move.getAllMovingMoves()) {

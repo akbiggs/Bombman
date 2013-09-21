@@ -1,9 +1,3 @@
-import static com.orbischallenge.bombman.api.game.MapItems.*;
-import Helpers.ExtraEntry;
-import Helpers.PointHelper;
-import Pathfinding.SearchNode;
-import Pathfinding.SearchSet;
-
 import com.orbischallenge.bombman.api.game.MapItems;
 import com.orbischallenge.bombman.api.game.PlayerAction;
 import com.orbischallenge.bombman.api.game.PowerUps;
@@ -192,7 +186,7 @@ public class PlayerAI implements Player {
     	for (Entry<Point, Bomb> pair : theoreticalBombs) {
     		MockBomb bomb = new MockBomb(pair.getKey(), pair.getValue());
     		
-    		if (bomb.isAboutToHitPosition(position)) {
+    		if (bomb.isHittingPosition(position)) {
     			return false;
     		}
     	}

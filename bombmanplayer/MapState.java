@@ -27,6 +27,6 @@ public class MapState {
     }
     
     public MapState clone() {
-    	return new MapState((MapItems[][])map.clone(), (HashMap<Point, Bomb>)bombLocations.clone(), (HashMap<Point, PowerUps>)powerUpLocations.clone(), (Bomber[])players.clone(), (List<Point>)explosionLocations);
+    	return new MapState((MapItems[][])map.clone(), new HashMap<Point, Bomb>(bombLocations), new HashMap<Point, PowerUps>(powerUpLocations), (Bomber[])players.clone(), (List<Point>)explosionLocations);
     }
 }
