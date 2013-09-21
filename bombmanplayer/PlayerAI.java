@@ -195,14 +195,14 @@ public class PlayerAI implements Player {
     	for (Entry<Point, Bomb> pair : theoreticalBombs) {
     		MockBomb bomb = new MockBomb(pair.getKey(), pair.getValue());
     		
-    		if (bomb.isHittingPosition(position)) {
+    		if (bomb.isAboutToHitPosition(position)) {
     			return false;
     		}
     	}
 
     	return true;
     }
-
+    
     private int howManyBlocksWillBombDestroy(Point position, int bombRange) {
     	int numDestroyed = 0;
     	boolean hitsLeft = false;
