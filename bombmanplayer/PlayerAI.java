@@ -17,12 +17,19 @@ public class PlayerAI implements Player {
 
     List<Point> allBlocks;
 
+    HashMap<Point, Bomb> bombLocations;
+    HashMap<Point, PowerUps> powerUpLocations;
+    Bomber[] players;
+    List<Point> explosionLocations;
+    int playerIndex;
+    int moveNumber;
+    
     /**
      * Gets called every time a new game starts.
      *
      * @param map The map.
      * @param blocks All the blocks on the map.
-     * @param players Current position, bomb range, and bomb count for both Bombers.
+     * @param players Current position` bomb range, and bomb count for both Bombers.
      * @param playerIndex Your player index.
      */
     @Override
@@ -49,6 +56,13 @@ public class PlayerAI implements Player {
     @Override
     public PlayerAction getMove(MapItems[][] map, HashMap<Point, Bomb> bombLocations, HashMap<Point, PowerUps> powerUpLocations, Bomber[] players, List<Point> explosionLocations, int playerIndex, int moveNumber) {
 
+    	this.bombLocations = bombLocations;
+    	this.powerUpLocations = powerUpLocations;
+    	this.players = players;
+    	this.explosionLocations = explosionLocations;
+    	this.playerIndex = playerIndex;
+    	this.moveNumber = moveNumber;
+    	
         boolean bombMove = false;
         /**
          * Get Bomber's current position
@@ -78,15 +92,16 @@ public class PlayerAI implements Player {
             if (map[x][y].isWalkable()) {
                 validMoves.add(move);
             }
+            
             if (allBlocks.contains(new Point(x, y))) {
                 blocks.add(move);
             }
         }
 
         /**
-         * If there are blocks around, I should place a bomb in my current square.
+         * If there are blocks around and it's safe, I should place a bomb in my current square.
          */
-        if (!blocks.isEmpty()) {
+        if (!blocks.isEmpty() && this.isSafeToPlaceBomb(curPosition)) {
             bombMove = true;
         }
 
@@ -110,7 +125,11 @@ public class PlayerAI implements Player {
 
     }
 
-    /**
+    private boolean isSafeToPlaceBomb(Point position) {
+    	return this.bombLocations.keySet().size() == 0;
+	}
+
+	/**
      * Uses Breadth First Search to find if a walkable path from point A to point B exists.
      *
      * This method does not consider the if tiles are dangerous or not. As long as all the tiles in
@@ -121,7 +140,7 @@ public class PlayerAI implements Player {
      * @param map The map use to check if a path exists between point A and point B
      * @return True if there is a walkable path between point A and point B, False otherwise.
      */
-    public boolean isThereAPath(Point start, Point end, MapItems[][] map) {
+	public boolean isThereAPath(Point start, Point end, MapItems[][] map) {
         //Keeps track of points we have to check
         Queue<Point> open = new LinkedList<>();
 
