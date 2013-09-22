@@ -18,14 +18,21 @@ public class MapState {
     public HashMap<Point, PowerUps> powerUpLocations;
     public Bomber[] players;
     public List<Point> explosionLocations;
+    public int playerIndex;
 
-    public MapState(MapItems[][] map, HashMap<Point, Bomb> bombLocations, HashMap<Point, PowerUps> powerUpLocations, Bomber[] players, List<Point> explosionLocations) {
+    public MapState(MapItems[][] map, HashMap<Point, Bomb> bombLocations, HashMap<Point, PowerUps> powerUpLocations, Bomber[] players, int playerIndex, List<Point> explosionLocations) {
     	this.map = map;
     	this.bombLocations = bombLocations;
     	this.powerUpLocations = powerUpLocations;
     	this.players = players;
     	this.explosionLocations = explosionLocations;
+    	this.playerIndex = playerIndex;
     }
+    
+    public Bomber getMainPlayer() {
+    	return getPlayer(this.playerIndex);
+    }
+    
     
     public Bomber getPlayer(int playerIndex) {
     	return this.players[playerIndex];
@@ -43,6 +50,6 @@ public class MapState {
     }
     
     public MapState clone() {
-    	return new MapState((MapItems[][])map.clone(), new HashMap<Point, Bomb>(bombLocations), new HashMap<Point, PowerUps>(powerUpLocations), (Bomber[])players.clone(), (List<Point>)explosionLocations);
+    	return new MapState((MapItems[][])map.clone(), new HashMap<Point, Bomb>(bombLocations), new HashMap<Point, PowerUps>(powerUpLocations), (Bomber[])players.clone(), playerIndex, (List<Point>)explosionLocations);
     }
 }

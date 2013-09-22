@@ -13,14 +13,18 @@ public class MapAnalyzer {
 	public MapAnalyzer(MapState state) {
 		this.state = state;
 	}
+	
+	public boolean isSafeFromExplosionsAtPosition(Point position, MapItems[][] map) {
+		return timeUntilExplosionAtPosition(position, map) > 10;
+	}
     
-    public boolean isSafeToMoveToPosition(Point position) {
-    	return isSafeToMoveToPosition(position, new LinkedList<MockBomb>());
+    public int timeUntilExplosionAtPosition(Point position, MapItems[][] map) {
+    	return timeUntilExplosionAtPosition(position, map, new LinkedList<MockBomb>());
     }
     
-    public boolean isSafeToMoveToPosition(Point position, List<MockBomb> theoreticalBombs) {
+    public int timeUntilExplosionAtPosition(Point position, MapItems[][] map, List<MockBomb> theoreticalBombs) {
     	if (this.state.explosionLocations.contains(position)) {
-    		return false;
+    		return 0;
     	}
     	
     	// Append real bombs to the theoretical bombs.
@@ -30,15 +34,16 @@ public class MapAnalyzer {
     		bombs.add(new MockBomb(pair.getKey(), pair.getValue()));    		
     	}
 
-    	// Check if the bomb will hit me.
+    	// Check any of the bombs will hit me.
+    	int smallestExplosionTime = Integer.MAX_VALUE;
     	for (MockBomb bomb : bombs) {    		
-    		if (bomb.isPositionWithinRange(position)) {
-    			return false;
+    		if (bomb.isPositionWithinRange(position, map)) {
+    			if (bomb.timeLeft < smallestExplosionTime)
+    				smallestExplosionTime = bomb.timeLeft;
     		}
     	}
 
-    	// This spot is safe (thumbs up)!
-    	return true;
+    	return smallestExplosionTime;
     }
     
     public int numberOfBlocksBombWillDestroy(Point position, int bombRange) {

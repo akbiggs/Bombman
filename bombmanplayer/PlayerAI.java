@@ -22,6 +22,9 @@ import com.orbischallenge.bombman.protocol.BomberManProtocol.PlayerMessageOrBuil
  */
 public class PlayerAI implements Player {
 	
+	// The brain stores the overall goals of the current player.
+	Brain brain;
+	
     /**
      * Gets called every time a new game starts.
      *
@@ -32,9 +35,7 @@ public class PlayerAI implements Player {
      */
     @Override
     public void newGame(MapItems[][] map, List<Point> blocks, Bomber[] players, int playerIndex) {
-    	// Do nothing on game setup.
-
-    	// new MapState(map, new HashMap<Point, Bomb>(), new HashMap<Point, PowerUps>(), players, new LinkedList<Point>());
+    	this.brain = new Brain();
     }
 
     /**
@@ -60,102 +61,17 @@ public class PlayerAI implements Player {
     	yoloJustBecauseWeCan();
     	
     	// Collect the state. 
-    	MapState state = new MapState(map, bombLocations, powerUpLocations, players, explosionLocations);
-    	Bomber curPlayer = state.getPlayer(playerIndex);
-    	Point curPosition = curPlayer.position;
+    	MapState state = new MapState(map, bombLocations, powerUpLocations, players, playerIndex, explosionLocations);
     	
-    	MovePlan plan = new MovePlan(state);
+    	// Update the goal.
+    	brain.updateGoals(state);
     	
-    	// Build a state analyzer.
-    	MapAnalyzer analyzer = new MapAnalyzer(state);
-    	
-        boolean bombMove = false;
-        
-        /**
-         * Find which neighbors of Bomber's current position are currently unoccupied, so that I
-         * can move into. Also counts how many blocks are neighbors.
-         */
-        List<Move.Direction> validMoves = new LinkedList<>();
-        LinkedList<Move.Direction> neighboringDestructableBlocks = new LinkedList<>();
+    	if (brain.getGoal() == Brain.Goal.EscapeDanger)
+    		return PathHelper.GetMoveDirectionForBeginningOfPath(brain.path).action;
 
-        for (Move.Direction move : Move.getAllMovingMoves()) {
-            int x = curPosition.x + move.dx;
-            int y = curPosition.y + move.dy;
-
-            if (map[x][y].isWalkable() && analyzer.isSafeToMoveToPosition(new Point(x, y))) {
-                validMoves.add(move);
-            }
-            
-            if (state.getMapItem(new Point(x, y)) == MapItems.BLOCK) {
-                neighboringDestructableBlocks.add(move);
-            }
-        }
-
-        /**
-         * If there are blocks around and it's safe, I should place a bomb in my current square.
-         */
-        if (!neighboringDestructableBlocks.isEmpty() && state.getBombs(curPlayer.playerIndex).size() == 0) {
-        	
-        	// Get a set of the neighboring open tiles.
-        	SearchSet set = new SearchSet(curPosition, map, 5);
-        	
-        	// Look through all the tiles to see if any are safe with new bomb.
-        	List<SearchNode> safeNodes = new LinkedList<>();
-        	for (SearchNode node : set.nodes) {
-        		
-            	// Create a theoretical bomb to consider when checking for safety. 
-            	List<MockBomb> theoreticalBombs = new LinkedList<MockBomb>();
-            	theoreticalBombs.add(new MockBomb(curPlayer));
-        		
-            	// Check if we have a safe spot. 
-        		if (analyzer.isSafeToMoveToPosition(node.position, theoreticalBombs)) {
-        			safeNodes.add(node);
-        		}
-        	}
-        	
-        	if (safeNodes.size() > 0) {
-        		// If there are safe nodes, then throw a bomb and run in the right direction!
-	        	List<Move.Direction> runFromBombDirections = new LinkedList<>();
-	        	for (SearchNode node : safeNodes) {
-	        		List<SearchNode> path = node.buildPathList();
-	        		if (path.size() > 1) {
-	        			SearchNode firstNode = path.get(0);
-	        			SearchNode secondNode = path.get(1);
-	        			Point diff = PointHelper.sub(secondNode.position, firstNode.position);
-	        			Move.Direction direction = Move.getDirection(diff.x, diff.y);
-	        			runFromBombDirections.add(direction);
-	        		}
-	        	}
-	        	
-	        	List<Move.Direction> finalValidMoves = new LinkedList<>();
-	        	for (Move.Direction move : Move.getAllMovingMoves()) {
-	        		if (validMoves.contains(move) && runFromBombDirections.contains(move))
-	        			finalValidMoves.add(move);
-	        	}
-	        	
-	        	validMoves = finalValidMoves;
-	            bombMove = true;
-        	}
-        }
-
-        /**
-         * There's no place to go, I'm stuck. :(
-         */
-        if (validMoves.isEmpty()) {
-            return Move.still.action;
-        }
-
-        /**
-         * There is some place I could go, so I randomly choose one direction and go off in that
-         * direction.
-         */
-        Move.Direction move = validMoves.get((int) (Math.random() * validMoves.size()));
-
-        if (bombMove) {
-            return move.bombaction;
-        }
-        
-        return move.action;
+    	// Delegate the move to the planner.
+    	MovePlanner planner = new MovePlanner(state, this.brain);
+        return planner.planMove();
     }
 
 	private void yoloJustBecauseWeCan() {

@@ -1,31 +1,33 @@
 
 import java.awt.Point;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
 // Note: Sort of hacky - any node that has the same position is considered equal.
 // Thus, each search node should be contained within a single a map state.
 
-public class SearchNode {
+public class PathNode {
 	
 	public Point position;
-	public SearchNode previous;
+	public PathNode previous;
 	public int distance;
 
-	public SearchNode(Point position, int distance, SearchNode previous) {
+	public PathNode(Point position, int distance, PathNode previous) {
 		this.position = position;
 		this.previous = previous;
 		this.distance = distance;
 	}
 	
-	public SearchNode(Point position) {
+	public PathNode(Point position) {
 		this(position, 0, null);
 	}
 	
-	public List<SearchNode> buildPathList() {
-		List<SearchNode> _return = new LinkedList<SearchNode>();
+	public List<PathNode> buildPathList() {
+		List<PathNode> _return = new LinkedList<PathNode>();
 		
-		SearchNode curNode = this;
+		
+		PathNode curNode = this;
 		while (curNode != null) {
 			_return.add(0, curNode);
 			curNode = curNode.previous;
@@ -37,7 +39,7 @@ public class SearchNode {
 	// NOTE: This is a little hack
 	@Override
 	public boolean equals(Object obj) {
-		return this.position.equals(((SearchNode)obj).position);
+		return this.position.equals(((PathNode)obj).position);
 	}
 	
 	// NOTE: This is a little hack, two nodes with the same position are considered equal
@@ -49,5 +51,12 @@ public class SearchNode {
 	@Override
 	public String toString() {
 		return position.toString();
+	}
+
+	public static class DistanceCompare implements Comparator<PathNode> {
+	    @Override
+	    public int compare(PathNode o1, PathNode o2) {
+	        return o2.distance - o1.distance;
+	    }
 	}
 }
