@@ -25,9 +25,26 @@ public class MovePlanner {
 	public PlayerAction planMove() {
 		
 		MovePlan plan = new MovePlan();
-	
         removeInvalidMovesFromPlan(plan);
-        decideIfToDropBomb(plan);
+        
+        // Handle special case: ESCAPE DANGER!
+    	if (brain.getGoal() == Brain.Goal.EscapeDanger) {
+    		Move.Direction escapeWay = PathHelper.GetMoveDirectionForBeginningOfPath(brain.path);
+    		if (plan.safeDirections.contains(escapeWay)) {
+    			return escapeWay.action;
+    		} else {
+    			// The way to escape is dangerous. We break through unless spot is just about to explode.
+    			int bombTime = analyzer.timeUntilExplosionAtPosition(
+    					PointHelper.add(state.getMainPlayer().position, new Point(escapeWay.dx, escapeWay.dy))
+    					, state.map);
+    			if (bombTime > 2)
+    				return escapeWay.action;
+    			else
+    				return Move.still.action;
+    		}
+    	}
+        
+        decideIfToDropBomb(plan, brain.tryToForceBomb);
      
         if (brain.hasPath()) 
         	brain.askMovePlanToFollowPath(plan);
@@ -36,8 +53,6 @@ public class MovePlanner {
         return plan.getPlayerActionFromPlan();
 	}
 	
-
-
 	private void removeInvalidMovesFromPlan(MovePlan plan) {
 		Point curPosition = state.getMainPlayer().position;
         for (Move.Direction move : Move.getAllMovingMoves()) {
@@ -52,7 +67,7 @@ public class MovePlanner {
         }
 	}
 	
-	private void decideIfToDropBomb(MovePlan plan) {
+	private void decideIfToDropBomb(MovePlan plan, boolean tryForce) {
 		
 		// Only drop a bomb if a wall is nearby to destroy.
 		boolean flag = false;
@@ -64,12 +79,12 @@ public class MovePlanner {
 	            flag = true;
 	        }
 		}
-		if (!flag)
+		if (!flag && !tryForce)
 			return;
 		
 		// Don't drop two bombs at once.
-		if (state.getBombs(state.playerIndex).size() > 0)
-			return;
+		//if (state.getBombs(state.playerIndex).size() > 0)
+		//	return;
 
     	// Get a set of the neighboring open tiles.
     	SearchSet set = new SearchSet(curPosition, state.map, 5);

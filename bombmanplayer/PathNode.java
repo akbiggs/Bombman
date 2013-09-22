@@ -56,7 +56,7 @@ public class PathNode {
 	public static class DistanceCompare implements Comparator<PathNode> {
 	    @Override
 	    public int compare(PathNode o1, PathNode o2) {
-	        return o2.distance - o1.distance;
+	        return o1.distance - o2.distance;
 	    }
 	}
 }

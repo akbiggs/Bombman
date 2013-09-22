@@ -65,9 +65,6 @@ public class PlayerAI implements Player {
     	
     	// Update the goal.
     	brain.updateGoals(state);
-    	
-    	if (brain.getGoal() == Brain.Goal.EscapeDanger)
-    		return PathHelper.GetMoveDirectionForBeginningOfPath(brain.path).action;
 
     	// Delegate the move to the planner.
     	MovePlanner planner = new MovePlanner(state, this.brain);

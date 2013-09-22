@@ -42,11 +42,11 @@ public class MockBomb {
 			return false;
 		} else if (positionDelta.x > 0) {
 			if (this.range >= positionDelta.x) {
-				return true;
+				return !isWallBetweenX(map, this.position.x, position.x, position.y);
 			}
 		} else if (positionDelta.y > 0) {
 			if (this.range >= positionDelta.y) {
-				return true;
+				return !isWallBetweenY(map, this.position.y, position.y, position.x);
 			}
 		} else {
 			return true;

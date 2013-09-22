@@ -15,7 +15,7 @@ public class MapAnalyzer {
 	}
 	
 	public boolean isSafeFromExplosionsAtPosition(Point position, MapItems[][] map) {
-		return timeUntilExplosionAtPosition(position, map) > 10;
+		return timeUntilExplosionAtPosition(position, map) > MockBomb.DETONATION_TIME;
 	}
     
     public int timeUntilExplosionAtPosition(Point position, MapItems[][] map) {
@@ -46,48 +46,57 @@ public class MapAnalyzer {
     	return smallestExplosionTime;
     }
     
-    public int numberOfBlocksBombWillDestroy(Point position, int bombRange) {
+    public int numberOfBlocksBombWillDestroy(Point position, int bombRange, MapItems[][] map) {
     	int numDestroyed = 0;
     	boolean hitsLeft = false;
     	boolean hitsRight = false;
     	boolean hitsUp = false;
     	boolean hitsDown = false;
+    	int boardSize = map.length;
     	for (int i = 1; i <= bombRange; i++) {
+    		
     		Point leftPosition = new Point(position.x - i, position.y);
     		Point rightPosition = new Point(position.x + i, position.y);
     		Point upPosition = new Point(position.x, position.y - i);
-    		Point downPosition = new Point(position.x + i, position.y + i);
+    		Point downPosition = new Point(position.x, position.y + i);
     		
     		if (!hitsLeft) {
-    			if (this.state.getMapItem(leftPosition) == MapItems.BLOCK) {
+        		if (leftPosition.x < 0)
+        			hitsLeft = true;
+        		else if (this.state.getMapItem(leftPosition) == MapItems.BLOCK) {
     				hitsLeft = true;
     				numDestroyed++;
     			}
     		}
     		
     		if (!hitsRight) {
-    			if (this.state.getMapItem(rightPosition) == MapItems.BLOCK) {
+        		if (rightPosition.x >= boardSize)
+        			hitsRight = true;
+        		else if (this.state.getMapItem(rightPosition) == MapItems.BLOCK) {
     				hitsRight = true;
     				numDestroyed++;
     			}
     		}
     		
     		if (!hitsUp) {
-    			if (this.state.getMapItem(upPosition) == MapItems.BLOCK) {
+    			if (upPosition.y < 0)
+        			hitsUp = true;
+        		else if (this.state.getMapItem(upPosition) == MapItems.BLOCK) {
     				hitsUp = true;
     				numDestroyed++;
     			}
     		}
     		
     		if (!hitsDown) {
-    			if (this.state.getMapItem(downPosition) == MapItems.BLOCK) {
+    			if (downPosition.y >= boardSize)
+        			hitsDown = true;
+        		else if (this.state.getMapItem(downPosition) == MapItems.BLOCK) {
     				hitsDown = true;
     				numDestroyed++;
     			}
     		}
     	}
     
-    	System.out.println("Bomb will destroy this many blocks: " + numDestroyed);
     	return numDestroyed;
     }
 }

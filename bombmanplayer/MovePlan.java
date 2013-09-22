@@ -17,6 +17,7 @@ public class MovePlan {
             return Move.still.action;
         }
         
+        // TODO: could add heurisitic here to get out of sticky situations
 		Move.Direction move = safeDirections.get((int) (Math.random() * safeDirections.size()));
 		if (willPutBomb) {
 			return move.bombaction;
