@@ -12,6 +12,8 @@ import com.orbischallenge.bombman.protocol.BomberManProtocol.MoveResponse;
 
 public class MovePlanner {
 
+	private static boolean jumpingSharkEnabled = false;
+	
 	MapState state;
 	MapAnalyzer analyzer;
 	Brain brain;
@@ -27,30 +29,36 @@ public class MovePlanner {
 		MovePlan plan = new MovePlan();
         removeInvalidMovesFromPlan(plan);
         
-        // Handle special case: ESCAPE DANGER!
-    	if (brain.getGoal() == Brain.Goal.EscapeDanger) {
-    		Move.Direction escapeWay = PathHelper.GetMoveDirectionForBeginningOfPath(brain.path);
-    		if (plan.safeDirections.contains(escapeWay)) {
-    			return escapeWay.action;
-    		} else {
-    			// The way to escape is dangerous. We break through unless spot is just about to explode.
-    			int bombTime = analyzer.timeUntilExplosionAtPosition(
-    					PointHelper.add(state.getMainPlayer().position, new Point(escapeWay.dx, escapeWay.dy))
-    					, state.map);
-    			if (bombTime > 2)
-    				return escapeWay.action;
-    			else
-    				return Move.still.action;
-    		}
-    	}
+    	if (brain.getGoal() == Brain.Goal.EscapeDanger)
+    		return handleEmergencyDanger(plan);
         
         decideIfToDropBomb(plan, brain.tryToForceBomb);
      
-        if (brain.hasPath()) 
-        	brain.askMovePlanToFollowPath(plan);
+        if (brain.hasPath()) { 
+        	if (!brain.askMovePlanToFollowPath(plan) && jumpingSharkEnabled) {
+        		if (brain.tryJumpShark(state))
+    				return PathHelper.GetMoveDirectionForBeginningOfPath(brain.path).action;
+        	}
+        }
         
 
         return plan.getPlayerActionFromPlan();
+	}
+
+	private PlayerAction handleEmergencyDanger(MovePlan plan) {
+		Move.Direction escapeWay = PathHelper.GetMoveDirectionForBeginningOfPath(brain.path);
+		if (plan.safeDirections.contains(escapeWay)) {
+			return escapeWay.action;
+		} else {
+			// The way to escape is dangerous. We break through unless spot is just about to explode.
+			int bombTime = analyzer.timeUntilExplosionAtPosition(
+					PointHelper.add(state.getMainPlayer().position, new Point(escapeWay.dx, escapeWay.dy))
+					, state.map);
+			if (bombTime > 2)
+				return escapeWay.action;
+			else
+				return Move.still.action;
+		}
 	}
 	
 	private void removeInvalidMovesFromPlan(MovePlan plan) {

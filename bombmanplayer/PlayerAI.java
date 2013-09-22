@@ -58,7 +58,8 @@ public class PlayerAI implements Player {
     public PlayerAction getMove(MapItems[][] map, HashMap<Point, Bomb> bombLocations, HashMap<Point, PowerUps> powerUpLocations, Bomber[] players, List<Point> explosionLocations, int playerIndex, int moveNumber) {
     	
     	// Keep track of yolos.
-    	yoloJustBecauseWeCan();
+    	// yoloJustBecauseWeCan();
+    	// Need to stop yolo-ing to make room for more configuration.
     	
     	// Collect the state. 
     	MapState state = new MapState(map, bombLocations, powerUpLocations, players, playerIndex, explosionLocations);

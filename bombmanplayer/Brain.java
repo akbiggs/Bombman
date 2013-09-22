@@ -20,6 +20,7 @@ public class Brain {
 	public List<PathNode> path = null; // TODO: Make not public
 	private SearchSet searchSet = null;
 	public boolean tryToForceBomb = false;
+	private boolean jumpBridgeOnNextTurn = false;
 	
 	public Brain() {
 
@@ -37,7 +38,7 @@ public class Brain {
 	
 	public SearchSet getSearchSetLazily(MapState state) {
 		if (this.searchSet == null)
-			this.searchSet = new SearchSet(state.getMainPlayer().position, state.map, 12);
+			this.searchSet = new SearchSet(state.getMainPlayer().position, state.map, 8);
 		return this.searchSet;
 	}
 	
@@ -86,6 +87,13 @@ public class Brain {
 	}
 
 	private void checkForDangerousSituations(MapState state) {
+		
+		// Handle a special case where we jump recklessly into dangerous territory!
+		if (jumpBridgeOnNextTurn) {
+			jumpBridgeOnNextTurn = false;
+			return;
+		}
+		
 		// Check for safety.
 		MapAnalyzer analyzer = new MapAnalyzer(state);
 		if (analyzer.isSafeFromExplosionsAtPosition(state.getMainPlayer().position, state.map)) {
@@ -146,7 +154,8 @@ public class Brain {
 		LinkedList<PathNodeBundle> blockSpots = new LinkedList<PathNodeBundle>();
 		for (PathNode tile : set.nodes) {
 			int blocks = analyzer.numberOfBlocksBombWillDestroy(tile.position, state.getMainPlayer().bombRange, state.map);
-			blockSpots.add(new PathNodeBundle(tile, blocks));
+			if (blocks > 0)
+				blockSpots.add(new PathNodeBundle(tile, blocks));
 		}
 		
 		if (blockSpots.size() > 0) {
@@ -165,6 +174,23 @@ public class Brain {
 			plan.safeDirections.add(direction);
 			path.remove(0);
 			return true;
+		}
+		return false;
+	}
+	
+	public boolean tryJumpShark(MapState state) {
+		MapAnalyzer analyzer = new MapAnalyzer(state);
+		
+		// Handle special case where we take a risky jump into bomb territory.
+		if (path.size() >= 3) {
+			PathNode theBridge = path.get(1);
+			PathNode acrossTheBridge = path.get(2);
+			int bridgeTime = analyzer.timeUntilExplosionAtPosition(theBridge.position, state.map);
+			int acrossTheBridgeTime = analyzer.timeUntilExplosionAtPosition(acrossTheBridge.position, state.map);
+			if (bridgeTime > 9 && acrossTheBridgeTime > MockBomb.DETONATION_TIME) {
+				jumpBridgeOnNextTurn = true;
+				return true;
+			}
 		}
 		return false;
 	}
