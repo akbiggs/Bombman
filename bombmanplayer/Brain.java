@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -37,8 +38,9 @@ public class Brain {
 	}
 	
 	public SearchSet getSearchSetLazily(MapState state) {
-		if (this.searchSet == null)
+		if (this.searchSet == null) {
 			this.searchSet = new SearchSet(state.getMainPlayer().position, state.map, 8);
+		}
 		return this.searchSet;
 	}
 	
@@ -82,12 +84,11 @@ public class Brain {
 	private void runEndOfPathCommand(Goal goal) {
 		if (goal == Goal.BreakBricks) {
 			tryToForceBomb = true;
-			System.out.println("Try to force explosion!!!");
+			if (PlayerAI.DEBUGGING) System.out.println("Try to force explosion!!!");
 		}
 	}
 
 	private void checkForDangerousSituations(MapState state) {
-		
 		// Handle a special case where we jump recklessly into dangerous territory!
 		if (jumpBridgeOnNextTurn) {
 			jumpBridgeOnNextTurn = false;
@@ -102,6 +103,7 @@ public class Brain {
 				path = null;
 			}
 		} else {
+			if (PlayerAI.DEBUGGING) System.out.println("Escape from danger!!!");
 			// Find less dangerous spots.
 			PathNode closestFreeSpot = null;
 			PathNode bestDangerousSpot = null;
@@ -133,9 +135,10 @@ public class Brain {
 	}
 	
 	public void findPowerUps(MapState state) {
+		if (PlayerAI.DEBUGGING) System.out.println("Finding powerups!!");
 		SearchSet set = getSearchSetLazily(state);
 		
-		LinkedList<PathNode> powerups = new LinkedList<PathNode>();
+		ArrayList<PathNode> powerups = new ArrayList<PathNode>();
 		for (PathNode tile : set.nodes)
 			if (state.getMapItem(tile.position) == MapItems.POWERUP)
 				powerups.add(tile);
@@ -148,10 +151,11 @@ public class Brain {
 	}
 	
 	public void findBlocksToDestroy(MapState state) {
+    	if (PlayerAI.DEBUGGING) System.out.println("Breaking Bricks!!");
 		SearchSet set = getSearchSetLazily(state);
 		MapAnalyzer analyzer = new MapAnalyzer(state);
 		
-		LinkedList<PathNodeBundle> blockSpots = new LinkedList<PathNodeBundle>();
+		ArrayList<PathNodeBundle> blockSpots = new ArrayList<PathNodeBundle>();
 		for (PathNode tile : set.nodes) {
 			int blocks = analyzer.numberOfBlocksBombWillDestroy(tile.position, state.getMainPlayer().bombRange, state.map);
 			if (blocks > 0)
@@ -179,6 +183,7 @@ public class Brain {
 	}
 	
 	public boolean tryJumpShark(MapState state) {
+		if (PlayerAI.DEBUGGING) System.out.println("Trying to jump shark!!!");
 		MapAnalyzer analyzer = new MapAnalyzer(state);
 		
 		// Handle special case where we take a risky jump into bomb territory.

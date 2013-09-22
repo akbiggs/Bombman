@@ -26,6 +26,7 @@ public class SearchSet {
 		this.destination = destination;
 		this.nodes = buildSet(start, map, searchDistance);
 		
+		if (PlayerAI.DEBUGGING) System.out.println("Escape from danger!!!");System.out.println("Built Search Set of size: " + this.nodes.size());
 		this.map = new HashMap<Point, PathNode>();
 		for (PathNode node : nodes)
 			this.map.put(node.position, node);

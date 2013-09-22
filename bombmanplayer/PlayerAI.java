@@ -22,6 +22,8 @@ import com.orbischallenge.bombman.protocol.BomberManProtocol.PlayerMessageOrBuil
  */
 public class PlayerAI implements Player {
 	
+	public static boolean DEBUGGING = false;
+	
 	// The brain stores the overall goals of the current player.
 	Brain brain;
 	
@@ -56,7 +58,7 @@ public class PlayerAI implements Player {
      */
     @Override
     public PlayerAction getMove(MapItems[][] map, HashMap<Point, Bomb> bombLocations, HashMap<Point, PowerUps> powerUpLocations, Bomber[] players, List<Point> explosionLocations, int playerIndex, int moveNumber) {
-    	
+    	long startTime = System.nanoTime();
     	// Keep track of yolos.
     	// yoloJustBecauseWeCan();
     	// Need to stop yolo-ing to make room for more configuration.
@@ -66,10 +68,29 @@ public class PlayerAI implements Player {
     	
     	// Update the goal.
     	brain.updateGoals(state);
+    	
+    	long middleTime = System.nanoTime();
+    	if (DEBUGGING) {
+    		float difference = (float)(middleTime - startTime) / 1000000;
+    		System.out.println("Brain Time: " + difference);
+    	}
 
     	// Delegate the move to the planner.
     	MovePlanner planner = new MovePlanner(state, this.brain);
-        return planner.planMove();
+    	PlayerAction action = planner.planMove();
+    	
+    	// Debug: Print the timesteps.
+    	long endTime = System.nanoTime();
+    	if (DEBUGGING) {
+	    	float difference = (float)(endTime - middleTime) / 1000000;
+	    	System.out.println("Planner Time: " + difference);
+	    	difference = (float)(endTime - startTime) / 1000000;
+	    	System.out.println("Total: " + difference);
+	    	if (difference > 5)
+	    		System.out.println("Expensive!");
+    	}
+    		
+        return action;
     }
 
 	private void yoloJustBecauseWeCan() {

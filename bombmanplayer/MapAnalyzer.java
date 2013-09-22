@@ -14,6 +14,15 @@ public class MapAnalyzer {
 		this.state = state;
 	}
 	
+	public boolean opponentWithinRange(Point position, MapState state) {
+		for (Bomber bomber : state.players) {
+			if (bomber.playerIndex != state.playerIndex) {
+				return new MockBomb(state.getMainPlayer(), position).isPositionWithinRange(bomber.position, state.map);
+			}
+		}
+		return false;
+	}
+	
 	public boolean isSafeFromExplosionsAtPosition(Point position, MapItems[][] map) {
 		return timeUntilExplosionAtPosition(position, map) > MockBomb.DETONATION_TIME;
 	}

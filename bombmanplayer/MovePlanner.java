@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.awt.datatransfer.FlavorTable;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import com.orbischallenge.bombman.protocol.BomberManProtocol.MoveResponse;
 
 public class MovePlanner {
 
-	private static boolean jumpingSharkEnabled = false;
+	private static boolean jumpingSharkEnabled = true;
 	
 	MapState state;
 	MapAnalyzer analyzer;
@@ -46,6 +47,7 @@ public class MovePlanner {
 	}
 
 	private PlayerAction handleEmergencyDanger(MovePlan plan) {
+		if (PlayerAI.DEBUGGING) System.out.println("Handling emergency danger!");
 		Move.Direction escapeWay = PathHelper.GetMoveDirectionForBeginningOfPath(brain.path);
 		if (plan.safeDirections.contains(escapeWay)) {
 			return escapeWay.action;
@@ -87,8 +89,11 @@ public class MovePlanner {
 	            flag = true;
 	        }
 		}
-		if (!flag && !tryForce)
+		
+		if (!flag && !tryForce && !analyzer.opponentWithinRange(curPosition, state))
 			return;
+		
+		if (PlayerAI.DEBUGGING) System.out.println("Checking if it is safe to place bomb?");
 		
 		// Don't drop two bombs at once.
 		//if (state.getBombs(state.playerIndex).size() > 0)
@@ -113,6 +118,7 @@ public class MovePlanner {
     	
     	if (safeNodes.size() == 0)
     		return;
+    	if (PlayerAI.DEBUGGING) System.out.println("Committing to placing bomb!"); 
     		
 		// If there are safe nodes, then throw a bomb and run in the right direction!
     	List<Move.Direction> runFromBombDirections = new LinkedList<>();
@@ -124,7 +130,7 @@ public class MovePlanner {
     	}
     	
     	// Perform union
-    	List<Move.Direction> finalValidMoves = new LinkedList<>();
+    	HashSet<Move.Direction> finalValidMoves = new HashSet<>();
     	for (Move.Direction move : Move.getAllMovingMoves()) {
     		if (plan.safeDirections.contains(move) && runFromBombDirections.contains(move))
     			finalValidMoves.add(move);
