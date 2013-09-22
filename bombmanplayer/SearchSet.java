@@ -10,6 +10,7 @@ import com.orbischallenge.bombman.api.game.MapItems;
 
 public class SearchSet {
 
+	// The nodes that can be reached from this search.
 	public List<SearchNode> nodes;
 
 	public SearchSet(Point start, MapItems[][] map, int searchDistance) {
@@ -25,7 +26,7 @@ public class SearchSet {
 	 * @param map
 	 *            The map to analyze for points
 	 */
-	public List<SearchNode> buildSet(Point start, MapItems[][] map, int searchDistance) {
+	private List<SearchNode> buildSet(Point start, MapItems[][] map, int searchDistance) {
 
 		// Keeps track of the nodes we accept into our set
 		ArrayList<SearchNode> accepted = new ArrayList<SearchNode>();
@@ -50,8 +51,6 @@ public class SearchSet {
 			if (map[curNode.position.x][curNode.position.y].isWalkable())
 				accepted.add(curNode);
 			
-			
-
 			// Consider all the neighbors of the current point in question
 			for (Move.Direction direction : Move.getAllMovingMoves()) {
 				int x = curNode.position.x + direction.dx;

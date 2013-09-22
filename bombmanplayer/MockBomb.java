@@ -13,8 +13,12 @@ public class MockBomb {
 	private boolean isExploded;
 	
 	public MockBomb(Bomber bomber) {
+		this(bomber, bomber.position);
+	}
+	
+	public MockBomb(Bomber bomber, Point position) {
 		this.position = bomber.position;
-		this.range = bomber.bombCount;
+		this.range = bomber.bombRange;
 		this.timeLeft = 15;
 		this.isExploded = false;
 	}
@@ -26,23 +30,7 @@ public class MockBomb {
 		this.isExploded = false;
 	}
 	
-	public void tick() {
-		if (this.timeLeft == 0) {
-			this.markAsExploded();
-		} else {
-			this.timeLeft--;
-		}
-	}
-
-	private void markAsExploded() {
-		this.isExploded = true;
-	}
-	
-	public boolean checkIfExploded() {
-		return this.isExploded;
-	}
-	
-	public boolean isHittingPosition(Point bomberPosition) {
+	public boolean isPositionWithinRange(Point bomberPosition) {
 		Point positionDelta = new Point(Math.abs(bomberPosition.x
 			- this.position.x), Math.abs(bomberPosition.y - this.position.y));
 	
@@ -63,12 +51,30 @@ public class MockBomb {
 		return false;
 	}
 	
-	public int getPotentialToHitBomber(Bomber bomber) {
-		if (PointHelper.manhattenDistance(this.position, bomber.position) > this.range) {
+	public void tick() {
+		if (this.timeLeft == 0) {
+			this.markAsExploded();
+		} else {
+			this.timeLeft--;
+		}
+	}
+
+	private void markAsExploded() {
+		this.isExploded = true;
+	}
+	
+	public boolean checkIfExploded() {
+		return this.isExploded;
+	}
+	
+	/*  TODO: Move to a class that handles heurisitcs and balance.
+	 * 
+	 *  public int getPotentialToHitBomber(Bomber bomber) {
+		if (PointHelper.manhattanDistance(this.position, bomber.position) > this.range) {
 			return 0;
 		}
 		
 		int potential = 0;
 		return potential;
-	}
+	}*/
 }

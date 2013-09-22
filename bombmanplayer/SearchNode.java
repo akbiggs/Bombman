@@ -3,7 +3,8 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
-// Note: Sort of hacky - only compare nodes within the same search set.
+// Note: Sort of hacky - any node that has the same position is considered equal.
+// Thus, each search node should be contained within a single a map state.
 
 public class SearchNode {
 	
