@@ -21,8 +21,6 @@ import com.orbischallenge.bombman.protocol.BomberManProtocol.PlayerMessageOrBuil
  * @author c.sham
  */
 public class PlayerAI implements Player {
-
-	Brain planner;
 	
     /**
      * Gets called every time a new game starts.
@@ -35,7 +33,7 @@ public class PlayerAI implements Player {
     @Override
     public void newGame(MapItems[][] map, List<Point> blocks, Bomber[] players, int playerIndex) {
     	// Do nothing on game setup.
-    	planner = new Brain(playerIndex);
+
     	// new MapState(map, new HashMap<Point, Bomb>(), new HashMap<Point, PowerUps>(), players, new LinkedList<Point>());
     }
 
@@ -61,12 +59,12 @@ public class PlayerAI implements Player {
     	// Keep track of yolos.
     	yoloJustBecauseWeCan();
     	
-    	
-    	
     	// Collect the state. 
     	MapState state = new MapState(map, bombLocations, powerUpLocations, players, explosionLocations);
     	Bomber curPlayer = state.getPlayer(playerIndex);
     	Point curPosition = curPlayer.position;
+    	
+    	MovePlan plan = new MovePlan(state);
     	
     	// Build a state analyzer.
     	MapAnalyzer analyzer = new MapAnalyzer(state);
